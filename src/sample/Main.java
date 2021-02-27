@@ -10,6 +10,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.geometry.Pos;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -23,10 +31,25 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(initializeConfigScreen());
+
+        primaryStage.setTitle("Welcome!!!");
+        Button btn = new Button();
+        btn.setText("START GAME");
+        Scene scene = new Scene(new BorderPane());
+        //when start game button is clicked, call method that returns a different screen
+        btn.setOnAction((event) -> {
+            primaryStage.setScene(initializeConfigScreen());
+        });
+
+        Text txt = new Text("Welcome to Bent Ostriches' Dungeon Crawler Game!");
+        BorderPane borderpane = new BorderPane();
+        borderpane.setCenter(txt);
+        borderpane.setBottom(btn);
+        borderpane.setAlignment(btn, Pos.CENTER);
+        primaryStage.setScene(new Scene(borderpane, 600, 600));
         primaryStage.show();
     }
+
 
     private Scene initializeConfigScreen() {
 
@@ -40,8 +63,8 @@ public class Main extends Application {
         Button buttonSetName = new Button();
         buttonSetName.setText("SET NAME");
         buttonSetName.setOnAction(e -> {
-            userInputName = textInputName.getText();    // they can never type in a null name right... wtf is this saying???
-            if (userInputName.equals("") || userInputName.equals("null") || userInputName.trim().length() == 0) {
+            userInputName = textInputName.getText();
+            if (userInputName.equals("") || userInputName.equals(null) || userInputName.trim().length() == 0) {
                 textInputName.setText("NAME CANNOT BE EMPTY, NULL, NOR JUST WHITE-SPACE!");
             }
         });
