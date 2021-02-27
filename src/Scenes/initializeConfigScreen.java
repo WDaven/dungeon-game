@@ -19,7 +19,14 @@ public class initializeConfigScreen {
     private static String[] currWeaponList;
     private static String userInputName;
 
-    public static Scene initConfigScreen() {
+    public static int getGameDifficulty() {
+        return gameDifficulty;
+    }
+    public static String getUserInputName() {
+        return userInputName;
+    }
+
+    public static Scene initConfigScreen(Stage primaryStage) {
 
         // choose name
         Text textChooseName = new Text();
@@ -118,6 +125,9 @@ public class initializeConfigScreen {
 
         Button buttonContinue = new Button();
         buttonContinue.setText("CONTINUE");
+        buttonContinue.setOnAction(e -> {
+                    primaryStage.setScene(InitialGameScreen.start(primaryStage));
+        });
 
         HBox hBoxContinue = new HBox();
         hBoxContinue.getChildren().addAll(buttonContinue);
@@ -129,7 +139,6 @@ public class initializeConfigScreen {
 
         // to go to next scene ACTION
         //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));    // call method of scene 3
-
 
         return new Scene(vBoxMain, 400, 600);
     }

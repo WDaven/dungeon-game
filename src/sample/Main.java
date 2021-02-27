@@ -32,7 +32,7 @@ public class Main extends Application {
         Scene scene = new Scene(new BorderPane());
         //when start game button is clicked, call method that returns a different screen
         btn.setOnAction((event) -> {
-            primaryStage.setScene(initializeConfigScreen.initConfigScreen());
+            primaryStage.setScene(initializeConfigScreen.initConfigScreen(primaryStage));
         });
 
         Text txt = new Text("Welcome to Bent Ostriches' Dungeon Crawler Game!");
