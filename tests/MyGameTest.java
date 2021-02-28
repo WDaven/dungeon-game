@@ -10,6 +10,7 @@ import Scenes.initializeConfigScreen;
 
 import static Scenes.InitialGameScreen.getMoney;
 import static Scenes.initializeConfigScreen.*;
+import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 
 public class MyGameTest extends ApplicationTest {
@@ -21,11 +22,10 @@ public class MyGameTest extends ApplicationTest {
     @Test
     public void testMoneyEasy() {
         clickOn("START GAME");
-        clickOn("YOUR NAME HERE");
+        write("testName");
         clickOn("SET NAME");
-        enterText("testName");
         clickOn("EASY");
-        clickOn("WEAPON 1");
+        clickOn(getWeapon1());
         clickOn("CONTINUE");
         FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$2000"));
     }
@@ -36,26 +36,69 @@ public class MyGameTest extends ApplicationTest {
     @Test
     public void testMoneyNormal() {
         clickOn("START GAME");
-        clickOn("YOUR NAME HERE");
+        write("testName");
         clickOn("SET NAME");
-        enterText("testName");
         clickOn("NORMAL");
-        clickOn("WEAPON 1");
+        clickOn(getWeapon1());
         clickOn("CONTINUE");
         FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$1000"));
     }
     @Test
     public void testMoneyHard() {
         clickOn("START GAME");
-        clickOn("YOUR NAME HERE");
+        write("testName");
         clickOn("SET NAME");
-        enterText("testName");
         clickOn("HARD");
-        clickOn("WEAPON 1");
+        clickOn(getWeapon1());
         clickOn("CONTINUE");
         FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$100"));
     }
-    
+    @Test
+    public void testName() {
+        clickOn("START GAME");
+        write("testName");
+        clickOn("SET NAME");
+        assertEquals("testName", getUserInputName());
+    }
+    @Test
+    public void testWeapon1() {
+        clickOn("START GAME");
+        write("testName");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        assertEquals(getWeapon1(), getCurrWeaponList()[0]);
+    }
+    @Test
+    public void testWeapon2() {
+        clickOn("START GAME");
+        write("testName");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        assertEquals(getWeapon1(), getCurrWeaponList()[0]);
+    }
+    @Test
+    public void testWeapon3() {
+        clickOn("START GAME");
+        write("testName");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon3());
+        assertEquals(getWeapon3(), getCurrWeaponList()[0]);
+    }
+    @Test
+    public void testWeaponMissClick() {
+        clickOn("START GAME");
+        write("testName");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn(getWeapon3());
+        assertEquals(getWeapon3(), getCurrWeaponList()[0]);
+    }
+
+
 
 
 }
