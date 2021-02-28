@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/M2combined.iml" filepath="$PROJECT_DIR$/M2combined.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/CS2340Team24M2.iml" filepath="$PROJECT_DIR$/CS2340Team24M2.iml" />
+>>>>>>> 70e6992321dd2e58b992ae9dc4f501bc052aa048
     </modules>
   </component>
 </project>
