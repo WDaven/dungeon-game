@@ -80,6 +80,10 @@ public class initializeConfigScreen {
         return currWeaponList;
     }
 
+    public static void setTextInputName(TextField textInputName){
+        Scenes.initializeConfigScreen.textInputName = textInputName;
+    }
+
     public static Scene initConfigScreen(Stage primaryStage) {
 
         // choose name

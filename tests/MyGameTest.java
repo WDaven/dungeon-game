@@ -97,8 +97,14 @@ public class MyGameTest extends ApplicationTest {
         clickOn(getWeapon3());
         assertEquals(getWeapon3(), getCurrWeaponList()[0]);
     }
-
-
-
-
+    @Test
+    public void textField() {
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        TextField tf = new TextField("");
+        setTextInputName(tf);
+        enterText("");
+        clickOn("SET NAME");
+        verifyThat("OK", NodeMatchers.isVisible());
+    }
 }
