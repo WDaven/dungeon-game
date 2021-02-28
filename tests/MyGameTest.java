@@ -108,6 +108,7 @@ public class MyGameTest extends ApplicationTest {
         clickOn("SET NAME");
         verifyThat("OK", NodeMatchers.isVisible());
     }
+    @Test
     public void testContinue() {
         clickOn("START GAME");
         clickOn("YOUR NAME HERE");
