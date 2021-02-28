@@ -13,29 +13,42 @@ import static Scenes.initializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
 public class InitialGameScreen {
+    private static int bkgdWidth = 947;
+    private static int bkgdHeight = 599;
+    private static Button exitLeft;
+    private static Button exitRight;
+    private static Button exitTop;
+    private static Button exitBottom;
+    private static Label money;
+
+    public static Label getMoney() {
+        return money;
+    }
+
+    public static void setMoney(Label money) {
+        InitialGameScreen.money = money;
+    }
 
     public static Scene start(Stage primaryStage) {
         // constants + panes
-        int bkgdWidth = 947;
-        int bkgdHeight = 599;
         HBox hBox = new HBox(bkgdWidth-150);
         VBox vBox = new VBox(bkgdHeight-100);
         Pane pane = new Pane();
 
         // Money label etc.
-        Label money = new Label("Money:");
+        money = new Label("Money:");
         money.setStyle("-fx-stroke:black; -fx-stroke-Width: 1; -fx-font: 30 arial");
         money.setAlignment(Pos.TOP_LEFT);
         pane.getChildren().add(money);
         int difficulty = getGameDifficulty();
         if (difficulty == 0) {
-            money.setText("$100");
+            money.setText("$2000");
         }
         if (difficulty == 1) {
             money.setText("$1000");
         }
         if (difficulty == 2) {
-            money.setText("$2000");
+            money.setText("$100");
         }
 
 
@@ -48,12 +61,12 @@ public class InitialGameScreen {
         Background background = new Background(bkgdSettings);
 
         // exit buttons
-        Button exitLeft = new Button("Exit Left");
-        Button exitRight = new Button("Exit Right");
+        exitLeft = new Button("Exit Left");
+        exitRight = new Button("Exit Right");
         hBox.getChildren().addAll(exitLeft,exitRight);
         hBox.setAlignment(Pos.CENTER_LEFT);
-        Button exitTop = new Button("Exit Top");
-        Button exitBottom = new Button("Exit Bottom");
+        exitTop = new Button("Exit Top");
+        exitBottom = new Button("Exit Bottom");
         vBox.getChildren().addAll(exitTop,exitBottom);
         vBox.setAlignment(Pos.TOP_CENTER);
 

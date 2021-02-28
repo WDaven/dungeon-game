@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -18,45 +19,68 @@ public class initializeConfigScreen {
     private static int gameDifficulty;
     private static String[] currWeaponList;
     private static String userInputName;
+    private static Button buttonContinue;
+    private static Text textChooseName;
+    private static TextField textInputName;
+    private static Button buttonSetName;
+    private static Text textGameDifficulty;
+    private static Button buttonEasy;
+    private static Button buttonNormal;
+    private static Button buttonHard;
+    private static Button buttonWeapon1;
+    private static Button buttonWeapon2;
+    private static Button buttonWeapon3;
+    private static Text textFirstWeapon;
+    private static Text textContinue;
+
+    public static String getUserInputName() {
+        return userInputName;
+    }
+
+    public static void setUserInputName(String userInputName) {
+        initializeConfigScreen.userInputName = userInputName;
+    }
 
     public static int getGameDifficulty() {
         return gameDifficulty;
     }
-    public static String getUserInputName() {
-        return userInputName;
+
+    public static void setGameDifficulty(int gameDifficulty) {
+        initializeConfigScreen.gameDifficulty = gameDifficulty;
     }
 
     public static Scene initConfigScreen(Stage primaryStage) {
 
         // choose name
-        Text textChooseName = new Text();
+        textChooseName = new Text();
         textChooseName.setText("Type in your name:");
 
-        TextField textInputName = new TextField();
+        textInputName = new TextField();
         textInputName.setText("YOUR NAME HERE");
 
-        Button buttonSetName = new Button();
+        buttonSetName = new Button();
         buttonSetName.setText("SET NAME");
         buttonSetName.setOnAction(e -> {
             userInputName = textInputName.getText();
             if (userInputName.equals("") || userInputName.equals(null) || userInputName.trim().length() == 0) {
-                textInputName.setText("NAME CANNOT BE EMPTY, NULL, NOR JUST WHITE-SPACE!");
+                Alert alertNull = new Alert(Alert.AlertType.WARNING, ("NAME CANNOT BE EMPTY, NULL, NOR JUST WHITE-SPACE!"));
+                alertNull.show();
             }
         });
 
 
         // choose game difficulty
-        Text textGameDifficulty = new Text();
+        textGameDifficulty = new Text();
         textGameDifficulty.setText("Choose your game difficulty:");
 
-        Button buttonEasy = new Button();
+        buttonEasy = new Button();
         buttonEasy.setText("EASY");
 
 
-        Button buttonNormal = new Button();
+        buttonNormal = new Button();
         buttonNormal.setText("NORMAL");
 
-        Button buttonHard = new Button();
+        buttonHard = new Button();
         buttonHard.setText("HARD");
 
         // button difficulty actions
@@ -83,16 +107,16 @@ public class initializeConfigScreen {
         hBoxGameDifficulty.getChildren().addAll(buttonEasy, buttonNormal, buttonHard);
 
         // choose first weapon
-        Text textFirstWeapon = new Text();
+        textFirstWeapon = new Text();
         textFirstWeapon.setText("Choose your first weapon:");
 
-        Button buttonWeapon1 = new Button();
+        buttonWeapon1 = new Button();
         buttonWeapon1.setText("WEAPON 1");  // replace with weapon picture later
 
-        Button buttonWeapon2 = new Button();
+        buttonWeapon2 = new Button();
         buttonWeapon2.setText("WEAPON 2");  // replace with weapon picture later
 
-        Button buttonWeapon3 = new Button();
+        buttonWeapon3 = new Button();
         buttonWeapon3.setText("WEAPON 3");  // replace with weapon picture later
 
         // button first weapon actions
@@ -120,10 +144,10 @@ public class initializeConfigScreen {
         hBoxFirstWeapon.getChildren().addAll(buttonWeapon1, buttonWeapon2, buttonWeapon3);
 
         // to go to next scene (initial game screen)
-        Text textContinue = new Text();
+        textContinue = new Text();
         textContinue.setText("Proceed to next screen:");
 
-        Button buttonContinue = new Button();
+        buttonContinue = new Button();
         buttonContinue.setText("CONTINUE");
         buttonContinue.setOnAction(e -> {
                     primaryStage.setScene(InitialGameScreen.start(primaryStage));
