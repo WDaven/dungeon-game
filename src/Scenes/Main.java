@@ -1,6 +1,5 @@
-package Scenes;
+package scenes;
 
-import Scenes.initializeConfigScreen;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -10,13 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.layout.BorderPane;
-import javafx.geometry.Pos;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 
 
 
@@ -41,7 +33,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
         primaryStage.setTitle("Welcome!!!");
@@ -50,7 +42,7 @@ public class Main extends Application {
         Scene scene = new Scene(new BorderPane());
         //when start game button is clicked, call method that returns a different screen
         startButton.setOnAction((event) -> {
-            primaryStage.setScene(initializeConfigScreen.initConfigScreen(primaryStage));
+            primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
 
         txt = new Text("Welcome to Bent Ostriches' Dungeon Crawler Game!");

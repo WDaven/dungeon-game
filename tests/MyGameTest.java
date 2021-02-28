@@ -1,5 +1,5 @@
 
-import Scenes.Main;
+import scenes.Main;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.Test;
@@ -7,17 +7,16 @@ import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
-import Scenes.initializeConfigScreen;
 
-import static Scenes.InitialGameScreen.getMoney;
-import static Scenes.initializeConfigScreen.*;
+import static scenes.InitialGameScreen.getMoney;
+import static scenes.InitializeConfigScreen.*;
 import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 
 public class MyGameTest extends ApplicationTest {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Main main = new Scenes.Main();
+        Main main = new scenes.Main();
         main.start(primaryStage);
     }
     @Test
@@ -28,7 +27,7 @@ public class MyGameTest extends ApplicationTest {
         clickOn("EASY");
         clickOn(getWeapon1());
         clickOn("CONTINUE");
-        FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$2000"));
+        FxAssert.verifyThat(getMoney(), LabeledMatchers.hasText("$2000"));
     }
 
     private void enterText(String s) {
@@ -42,7 +41,7 @@ public class MyGameTest extends ApplicationTest {
         clickOn("NORMAL");
         clickOn(getWeapon1());
         clickOn("CONTINUE");
-        FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$1000"));
+        FxAssert.verifyThat(getMoney(), LabeledMatchers.hasText("$1000"));
     }
     @Test
     public void testMoneyHard() {
@@ -52,7 +51,7 @@ public class MyGameTest extends ApplicationTest {
         clickOn("HARD");
         clickOn(getWeapon1());
         clickOn("CONTINUE");
-        FxAssert.verifyThat(getMoney(),LabeledMatchers.hasText("$100"));
+        FxAssert.verifyThat(getMoney(), LabeledMatchers.hasText("$100"));
     }
     @Test
     public void testName() {

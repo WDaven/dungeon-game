@@ -1,6 +1,5 @@
-package Scenes;
+package scenes;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -9,7 +8,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
 
-import static Scenes.initializeConfigScreen.getGameDifficulty;
+import static scenes.InitializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
 public class InitialGameScreen {
@@ -33,7 +32,7 @@ public class InitialGameScreen {
     public static Scene start(Stage primaryStage) {
         // constants + panes
         HBox hBox = new HBox(370);
-        VBox vBox = new VBox(bkgdHeight-100);
+        VBox vBox = new VBox(bkgdHeight - 100);
         Pane pane = new Pane();
         Pane centerText = new Pane();
 
@@ -68,11 +67,11 @@ public class InitialGameScreen {
         // exit buttons
         exitLeft = new Button("Exit Left");
         exitRight = new Button("Exit Right");
-        hBox.getChildren().addAll(exitLeft,exitNotif,exitRight);
+        hBox.getChildren().addAll(exitLeft, exitNotif, exitRight);
         hBox.setAlignment(Pos.CENTER_LEFT);
         exitTop = new Button("Exit Top");
         exitBottom = new Button("Exit Bottom");
-        vBox.getChildren().addAll(exitTop,exitBottom);
+        vBox.getChildren().addAll(exitTop, exitBottom);
         vBox.setAlignment(Pos.TOP_CENTER);
 
         // final panes and showing scene
@@ -80,7 +79,7 @@ public class InitialGameScreen {
         root.setBackground(background);
         primaryStage.setTitle("Initial Game Screen");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        root.getChildren().addAll(hBox,vBox,pane,centerText);
+        root.getChildren().addAll(hBox, vBox, pane, centerText);
         
         //primaryStage.show();
         return primaryStage.getScene();

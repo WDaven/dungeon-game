@@ -1,8 +1,5 @@
-package Scenes;
+package scenes;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,9 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.concurrent.atomic.AtomicReference;
 
-public class initializeConfigScreen {
+public class InitializeConfigScreen {
     // things to keep track of
     private static int gameDifficulty;
     private static String[] currWeaponList;
@@ -41,7 +37,7 @@ public class initializeConfigScreen {
     }
 
     public static void setWeapon1(String weapon1) {
-        initializeConfigScreen.weapon1 = weapon1;
+        InitializeConfigScreen.weapon1 = weapon1;
     }
 
     public static String getWeapon2() {
@@ -49,7 +45,7 @@ public class initializeConfigScreen {
     }
 
     public static void setWeapon2(String weapon2) {
-        initializeConfigScreen.weapon2 = weapon2;
+        InitializeConfigScreen.weapon2 = weapon2;
     }
 
     public static String getWeapon3() {
@@ -57,7 +53,7 @@ public class initializeConfigScreen {
     }
 
     public static void setWeapon3(String weapon3) {
-        initializeConfigScreen.weapon3 = weapon3;
+        InitializeConfigScreen.weapon3 = weapon3;
     }
 
     public static String getUserInputName() {
@@ -65,7 +61,7 @@ public class initializeConfigScreen {
     }
 
     public static void setUserInputName(String userInputName) {
-        initializeConfigScreen.userInputName = userInputName;
+        InitializeConfigScreen.userInputName = userInputName;
     }
 
     public static int getGameDifficulty() {
@@ -73,15 +69,15 @@ public class initializeConfigScreen {
     }
 
     public static void setGameDifficulty(int gameDifficulty) {
-        initializeConfigScreen.gameDifficulty = gameDifficulty;
+        InitializeConfigScreen.gameDifficulty = gameDifficulty;
     }
 
     public static String[] getCurrWeaponList() {
         return currWeaponList;
     }
 
-    public static void setTextInputName(TextField textInputName){
-        Scenes.initializeConfigScreen.textInputName = textInputName;
+    public static void setTextInputName(TextField textInputName) {
+        scenes.InitializeConfigScreen.textInputName = textInputName;
     }
 
     public static Scene initConfigScreen(Stage primaryStage) {
@@ -97,8 +93,10 @@ public class initializeConfigScreen {
         buttonSetName.setText("SET NAME");
         buttonSetName.setOnAction(e -> {
             userInputName = textInputName.getText();
-            if (userInputName.equals("") || userInputName.equals(null) || userInputName.trim().length() == 0) {
-                Alert alertNull = new Alert(Alert.AlertType.WARNING, ("NAME CANNOT BE EMPTY, NULL, NOR JUST WHITE-SPACE!"));
+            if (userInputName.equals("") || userInputName.equals(null)
+                    || userInputName.trim().length() == 0) {
+                Alert alertNull = new Alert(Alert.AlertType.WARNING,
+                        ("NAME CANNOT BE EMPTY, NULL, NOR JUST WHITE-SPACE!"));
                 alertNull.show();
             }
         });
@@ -185,7 +183,7 @@ public class initializeConfigScreen {
         buttonContinue = new Button();
         buttonContinue.setText("CONTINUE");
         buttonContinue.setOnAction(e -> {
-                    primaryStage.setScene(InitialGameScreen.start(primaryStage));
+            primaryStage.setScene(InitialGameScreen.start(primaryStage));
         });
 
         HBox hBoxContinue = new HBox();
@@ -194,10 +192,12 @@ public class initializeConfigScreen {
         // main vBox for organization
         VBox vBoxMain = new VBox();
         vBoxMain.getChildren().addAll(textChooseName, textInputName, buttonSetName,
-                textGameDifficulty, hBoxGameDifficulty, textFirstWeapon, hBoxFirstWeapon, textContinue, hBoxContinue);
+                textGameDifficulty, hBoxGameDifficulty, textFirstWeapon,
+                hBoxFirstWeapon, textContinue, hBoxContinue);
 
         // to go to next scene ACTION
-        //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));    // call method of scene 3
+        //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));
+        // call method of scene 3
 
         return new Scene(vBoxMain, 400, 600);
     }
