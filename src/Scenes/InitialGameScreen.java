@@ -20,6 +20,7 @@ public class InitialGameScreen {
     private static Button exitTop;
     private static Button exitBottom;
     private static Label money;
+    private static Label exitNotif;
 
     public static Label getMoney() {
         return money;
@@ -31,9 +32,10 @@ public class InitialGameScreen {
 
     public static Scene start(Stage primaryStage) {
         // constants + panes
-        HBox hBox = new HBox(bkgdWidth-150);
+        HBox hBox = new HBox(370);
         VBox vBox = new VBox(bkgdHeight-100);
         Pane pane = new Pane();
+        Pane centerText = new Pane();
 
         // Money label etc.
         money = new Label("Money:");
@@ -51,6 +53,9 @@ public class InitialGameScreen {
             money.setText("$100");
         }
 
+        // exit label
+        exitNotif = new Label("Pick an exit");
+        exitNotif.setAlignment(Pos.CENTER);
 
         // background image
         Image imageBkgd = new Image("/backgroundnored.png");
@@ -63,7 +68,7 @@ public class InitialGameScreen {
         // exit buttons
         exitLeft = new Button("Exit Left");
         exitRight = new Button("Exit Right");
-        hBox.getChildren().addAll(exitLeft,exitRight);
+        hBox.getChildren().addAll(exitLeft,exitNotif,exitRight);
         hBox.setAlignment(Pos.CENTER_LEFT);
         exitTop = new Button("Exit Top");
         exitBottom = new Button("Exit Bottom");
@@ -75,7 +80,8 @@ public class InitialGameScreen {
         root.setBackground(background);
         primaryStage.setTitle("Initial Game Screen");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        root.getChildren().addAll(hBox,vBox,pane);
+        root.getChildren().addAll(hBox,vBox,pane,centerText);
+        
         //primaryStage.show();
         return primaryStage.getScene();
     }

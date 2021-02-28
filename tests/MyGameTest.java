@@ -107,4 +107,14 @@ public class MyGameTest extends ApplicationTest {
         clickOn("SET NAME");
         verifyThat("OK", NodeMatchers.isVisible());
     }
+    public void testContinue() {
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        verifyThat("Pick an exit", NodeMatchers.isNotNull());
+    }
 }
