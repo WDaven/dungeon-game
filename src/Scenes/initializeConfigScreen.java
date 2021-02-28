@@ -32,6 +32,33 @@ public class initializeConfigScreen {
     private static Button buttonWeapon3;
     private static Text textFirstWeapon;
     private static Text textContinue;
+    private static String weapon1 = "dagger";
+    private static String weapon2 = "sword";
+    private static String weapon3 = "greatsword";
+
+    public static String getWeapon1() {
+        return weapon1;
+    }
+
+    public static void setWeapon1(String weapon1) {
+        initializeConfigScreen.weapon1 = weapon1;
+    }
+
+    public static String getWeapon2() {
+        return weapon2;
+    }
+
+    public static void setWeapon2(String weapon2) {
+        initializeConfigScreen.weapon2 = weapon2;
+    }
+
+    public static String getWeapon3() {
+        return weapon3;
+    }
+
+    public static void setWeapon3(String weapon3) {
+        initializeConfigScreen.weapon3 = weapon3;
+    }
 
     public static String getUserInputName() {
         return userInputName;
@@ -47,6 +74,10 @@ public class initializeConfigScreen {
 
     public static void setGameDifficulty(int gameDifficulty) {
         initializeConfigScreen.gameDifficulty = gameDifficulty;
+    }
+
+    public static String[] getCurrWeaponList() {
+        return currWeaponList;
     }
 
     public static Scene initConfigScreen(Stage primaryStage) {
@@ -111,30 +142,30 @@ public class initializeConfigScreen {
         textFirstWeapon.setText("Choose your first weapon:");
 
         buttonWeapon1 = new Button();
-        buttonWeapon1.setText("WEAPON 1");  // replace with weapon picture later
+        buttonWeapon1.setText(weapon1);  // replace with weapon picture later
 
         buttonWeapon2 = new Button();
-        buttonWeapon2.setText("WEAPON 2");  // replace with weapon picture later
+        buttonWeapon2.setText(weapon2);  // replace with weapon picture later
 
         buttonWeapon3 = new Button();
-        buttonWeapon3.setText("WEAPON 3");  // replace with weapon picture later
+        buttonWeapon3.setText(weapon3);  // replace with weapon picture later
 
         // button first weapon actions
         currWeaponList = new String[10];
         buttonWeapon1.setOnAction(e -> {
-            currWeaponList[0] = textFirstWeapon.getText();
+            currWeaponList[0] = weapon1;
             buttonWeapon1.setStyle("-fx-background-color: green;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
         });
         buttonWeapon2.setOnAction(e -> {
-            currWeaponList[0] = textFirstWeapon.getText();
+            currWeaponList[0] = weapon2;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: green;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
         });
         buttonWeapon3.setOnAction(e -> {
-            currWeaponList[0] = textFirstWeapon.getText();
+            currWeaponList[0] = weapon3;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: green;");
