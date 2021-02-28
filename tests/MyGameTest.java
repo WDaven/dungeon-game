@@ -1,3 +1,4 @@
+
 import Scenes.Main;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
