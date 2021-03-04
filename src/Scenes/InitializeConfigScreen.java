@@ -81,7 +81,6 @@ public class InitializeConfigScreen {
     }
 
     public static Scene initConfigScreen(Stage primaryStage) {
-
         // choose name
         textChooseName = new Text();
         textChooseName.setText("Type in your name:");
@@ -103,6 +102,7 @@ public class InitializeConfigScreen {
 
 
         // choose game difficulty
+        gameDifficulty = -1;
         textGameDifficulty = new Text();
         textGameDifficulty.setText("Choose your game difficulty:");
 
@@ -183,7 +183,14 @@ public class InitializeConfigScreen {
         buttonContinue = new Button();
         buttonContinue.setText("CONTINUE");
         buttonContinue.setOnAction(e -> {
-            primaryStage.setScene(InitialGameScreen.start(primaryStage));
+            if (userInputName == null || currWeaponList[0] == null || gameDifficulty == -1) {
+                Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
+                        ("Please enter valid name, select difficulty,"
+                                + "AND choose weapon to continue!"));
+                alertEmpty.show();
+            } else {
+                primaryStage.setScene(InitialGameScreen.start(primaryStage));
+            }
         });
 
         HBox hBoxContinue = new HBox();
@@ -198,8 +205,6 @@ public class InitializeConfigScreen {
         // to go to next scene ACTION
         //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));
         // call method of scene 3
-
         return new Scene(vBoxMain, 400, 600);
     }
-
 }
