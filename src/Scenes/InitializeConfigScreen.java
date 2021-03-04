@@ -1,4 +1,4 @@
-package Scenes;
+package scenes;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -77,7 +77,7 @@ public class InitializeConfigScreen {
     }
 
     public static void setTextInputName(TextField textInputName) {
-        Scenes.InitializeConfigScreen.textInputName = textInputName;
+        scenes.InitializeConfigScreen.textInputName = textInputName;
     }
 
     public static Scene initConfigScreen(Stage primaryStage) {
@@ -185,7 +185,8 @@ public class InitializeConfigScreen {
         buttonContinue.setOnAction(e -> {
             if (userInputName == null || currWeaponList[0] == null || gameDifficulty == -1) {
                 Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
-                        ("Please enter valid name, select difficulty, AND choose weapon to continue!"));
+                        ("Please enter valid name, select difficulty,"
+                                + "AND choose weapon to continue!"));
                 alertEmpty.show();
             } else {
                 primaryStage.setScene(InitialGameScreen.start(primaryStage));

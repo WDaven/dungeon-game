@@ -1,4 +1,4 @@
-package Scenes;
+package scenes;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
@@ -8,7 +8,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
 
-import static Scenes.InitializeConfigScreen.getGameDifficulty;
+import static scenes.InitializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
 public class InitialGameScreen {
