@@ -13,13 +13,17 @@ public class Maze {
         // setting head Node to room 1
         fourWayLinkedList.addRandToPath(fourWayLinkedList.getHead(), randRoomIdentifier, 0);
     }
+
     public void generateMaze() {
         Random rand = new Random();
         int randRoomIdentifier = rand.nextInt(12) + 1;
-        while (fourWayLinkedList.getHighestPathCount() < 7) {
+        while (fourWayLinkedList.getHighestPathCount() < 8) {
             fourWayLinkedList.addRandToPath(fourWayLinkedList.getHead(), randRoomIdentifier, 0);
         }
     }
 
+    public Node getHead() {
+        return fourWayLinkedList.getHead();
+    }
 }
 

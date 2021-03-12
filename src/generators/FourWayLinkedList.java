@@ -3,7 +3,7 @@ package generators;
 import java.util.Random;
 
 public class FourWayLinkedList {
-    private Node head;
+    private final Node head;
     private String[] directionsPossibleList = new String[4];
     private final int topDir = 0;
     private final int rightDir = 1;
@@ -20,49 +20,38 @@ public class FourWayLinkedList {
         directionsPossibleList[3] = "1, 2, 3, 5, 9, 11";    // 3 row is left direction
     }
 
-    class Node {
-        int roomIdentifier;
-        Node top;
-        Node bottom;
-        Node left;
-        Node right;
-
-        Node(int roomIdentifier) {
-            this.roomIdentifier = roomIdentifier;
-            top = null;
-            bottom = null;
-            left = null;
-            right = null;
-        }
-    }
     public Node addRandToPath(Node curr, int roomIdentifier, int pathCount) {
         Random random = new Random();
+        Node newNode = new Node(roomIdentifier);
         int pathToTake = random.nextInt(4);
         if (curr == null) {
             if (pathCount > highestPathCount) {
                 highestPathCount = pathCount;
+            } else if (highestPathCount == 7) {
+                newNode.isExit = true;
             }
             return new Node(roomIdentifier);
         } else {
             if (directionsPossibleList[pathToTake].contains("" + roomIdentifier)) {
                 if (pathToTake == topDir) {
-                    curr.top = addRandToPath(curr.top, roomIdentifier, pathCount++);
+                    curr.setTop(addRandToPath(curr.getTop(), roomIdentifier, pathCount++));
                 } else if (pathToTake == rightDir) {
-                    curr.right = addRandToPath(curr.right, roomIdentifier, pathCount++);
+                    curr.setRight(addRandToPath(curr.getRight(), roomIdentifier, pathCount++));
                 } else if (pathToTake == bottomDir) {
-                    curr.bottom = addRandToPath(curr.bottom, roomIdentifier, pathCount++);
+                    curr.setBottom(addRandToPath(curr.getBottom(), roomIdentifier, pathCount++));
                 } else {
-                    curr.left = addRandToPath(curr.left, roomIdentifier, pathCount++);
+                    curr.setLeft(addRandToPath(curr.getLeft(), roomIdentifier, pathCount++));
                 }
             }
             return curr;
         }
     }
 
-    public Node getHead() {
-        return head;
-    }
     public int getHighestPathCount() {
         return highestPathCount;
+    }
+
+    public Node getHead() {
+        return head;
     }
 }

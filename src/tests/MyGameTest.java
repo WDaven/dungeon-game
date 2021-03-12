@@ -1,3 +1,4 @@
+package tests;
 
 import scenes.Main;
 import javafx.scene.control.TextField;
