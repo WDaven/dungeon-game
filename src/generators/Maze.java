@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import java.util.Random;
 
 public class Maze {
+
     public class Node {
         int roomIdentifier;
         Node top;
@@ -40,6 +41,9 @@ public class Maze {
         }
         public Image getImageBkgd() {
             return imageBkgd;
+        }
+        public boolean getIsExit() {
+            return isExit;
         }
     }
     private static Node curr;
@@ -178,51 +182,21 @@ public class Maze {
         }
         curr = startNode;
     }
-    public static BorderPane generateRoom(Node node) {
-        BorderPane root = new BorderPane();
-        Button exitLeft = new Button("Exit Left");
-        Button exitRight = new Button("Exit Right");
-        Button exitTop = new Button("Exit Top");
-        Button exitBottom = new Button("Exit Bottom");
-        if (node.getRight() != null) {
-            HBox hold = new HBox();
-            hold.getChildren().add(exitRight);
-            hold.setAlignment(Pos.CENTER);
-            hold.setSpacing(10);
-            root.setRight(hold);
-        }
-        if (node.getLeft() != null) {
-            HBox hold = new HBox();
-            hold.getChildren().add(exitLeft);
-            hold.setAlignment(Pos.CENTER);
-            hold.setSpacing(10);
-            root.setLeft(hold);
-        }
-        if (node.getTop() != null) {
-            HBox hold = new HBox();
-            hold.getChildren().add(exitTop);
-            hold.setAlignment(Pos.CENTER);
-            hold.setSpacing(10);
-            root.setTop(hold);
-        }
-        if (node.getBottom() != null) {
-            HBox hold = new HBox();
-            hold.getChildren().add(exitBottom);
-            hold.setAlignment(Pos.CENTER);
-            hold.setSpacing(10);
-            root.setBottom(hold);
-        }
-        Image imageBkgd = node.getImageBkgd();
-        BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background background = new Background(bkgdSettings);
-        root.setBackground(background);
-        return root;
-    }
+    //getters
     public static Node getCurr() {
         return curr;
     }
+//    public static Button getExitLeft() {
+//        return exitLeft;
+//    }
+//    public static Button getExitRight() {
+//        return exitRight;
+//    }
+//    public static Button getExitTop() {
+//        return exitTop;
+//    }
+//    public static Button getExitBottom() {
+//        return exitBottom;
+    //}
 }
 
