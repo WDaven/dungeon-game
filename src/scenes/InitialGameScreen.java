@@ -27,13 +27,14 @@ public class InitialGameScreen {
     private static Label exitNotif;
     private static Maze maze;
     private static Node curr;
+    private static BorderPane root;
 
     public static Label getMoney() {
         return money;
     }
 
     public static void setMoney(Label money) {
-        InitialGameScreen.money = money;
+        scenes.InitialGameScreen.money = money;
     }
 
     public static Scene start(Stage primaryStage) {
@@ -68,7 +69,7 @@ public class InitialGameScreen {
         exitNotif.setAlignment(Pos.CENTER);
 
         // exit buttons
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         exitLeft = new Button("Exit Left");
         exitRight = new Button("Exit Right");
         exitTop = new Button("Exit Top");
@@ -108,62 +109,156 @@ public class InitialGameScreen {
         Background background = new Background(bkgdSettings);
         root.setBackground(background);
 
-        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                curr = curr.getLeft();
-                imageBkgd = curr.getImageBkgd();
-                BackgroundImage backgroundSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT);
-                background = new Background(backgroundSettings);
-                root.setBackground(background);
-                primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-            }
-        };
-        exitLeft.setOnAction(e -> {
-
-        });
-        exitRight.setOnAction(e -> {
-            curr = curr.getLeft();
-            Image imgBkgd = curr.getImageBkgd();
-            BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background bkgd = new Background(bkgdSet);
-            root.setBackground(bkgd);
-            primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        });
-        exitTop.setOnAction(e -> {
-            curr = curr.getLeft();
-            Image imgBkgd = curr.getImageBkgd();
-            BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background bkgd = new Background(bkgdSet);
-            root.setBackground(bkgd);
-            primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        });
-        exitBottom.setOnAction(e -> {
-            curr = curr.getLeft();
-            Image imgBkgd = curr.getImageBkgd();
-            BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background bkgd = new Background(bkgdSet);
-            root.setBackground(bkgd);
-            primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        });
+        setExitLeftAction();
+        setExitRightAction();
+        setExitTopAction();
+        setExitBottomAction();
 
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
         root.getChildren().addAll(hBox, vBox, pane, centerText);
         return primaryStage.getScene();
+    }
+    public static void setExitLeftAction() {
+        exitLeft.setOnAction(e -> {
+            if (curr.getRoomNum() == 14 || curr.getRoomNum() == 18) {
+                if (curr.getLeft() == null) {
+                    Alert alertExit = new Alert(Alert.AlertType.WARNING,
+                            ("Please Choose another Exit"));
+                    alertExit.show();
+                }
+            }
+            if (curr.getLeft() != null) {
+                curr = curr.getLeft();
+                Image imgBkgd = curr.getImageBkgd();
+                BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT);
+                Background bkgd = new Background(bkgdSet);
+                root.setBackground(bkgd);
+                //button visibility
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
+            }
+        });
+    }
+
+    public static void setExitRightAction() {
+        exitRight.setOnAction(e -> {
+            if (curr.getRoomNum() == 14 || curr.getRoomNum() == 18) {
+                if (curr.getRight() == null) {
+                    Alert alertExit = new Alert(Alert.AlertType.WARNING,
+                            ("Please Choose another Exit"));
+                    alertExit.show();
+                }
+            }
+            if (curr.getRight() != null) {
+                curr = curr.getRight();
+                Image imgBkgd = curr.getImageBkgd();
+                BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT);
+                Background bkgd = new Background(bkgdSet);
+                root.setBackground(bkgd);
+                //button visibility
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
+            }
+        });
+    }
+
+    public static void setExitTopAction() {
+        exitTop.setOnAction(e -> {
+            if (curr.getRoomNum() == 14) {
+                if (curr.getTop() == null) {
+                    Alert alertExit = new Alert(Alert.AlertType.WARNING,
+                            ("Please Choose another Exit"));
+                    alertExit.show();
+                }
+            }
+            if (curr.getTop() != null) {
+                curr = curr.getTop();
+                Image imgBkgd = curr.getImageBkgd();
+                BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT);
+                Background bkgd = new Background(bkgdSet);
+                root.setBackground(bkgd);
+                //button visibility
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
+
+            }
+        });
+    }
+
+    public static void setExitBottomAction() {
+        exitBottom.setOnAction(e -> {
+            if (curr.getRoomNum() == 18) {
+                if (curr.getBottom() == null) {
+                    Alert alertExit = new Alert(Alert.AlertType.WARNING,
+                            ("Please Choose another Exit"));
+                    alertExit.show();
+                }
+            }
+            if (curr.getBottom() != null) {
+                curr = curr.getBottom();
+                Image imgBkgd = curr.getImageBkgd();
+                BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT);
+                Background bkgd = new Background(bkgdSet);
+                root.setBackground(bkgd);
+                //button visibility
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
+            }
+        });
     }
 
     public static void main(String[] args) {

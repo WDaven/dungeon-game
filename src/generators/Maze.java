@@ -162,6 +162,7 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
+        nodeExit.imageBkgd = new Image("/mazeroomend.png");
         random = new Random();
         int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
             // room 18 is connected to exit ... right, bottom, left possible
