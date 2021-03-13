@@ -1,7 +1,6 @@
 package scenes;
 
 import generators.Maze;
-import generators.Node;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -23,7 +22,6 @@ public class InitialGameScreen {
     private static Label money;
     private static Label exitNotif;
     private static Maze maze;
-    private static Node curr;
 
     public static Label getMoney() {
         return money;
@@ -37,8 +35,6 @@ public class InitialGameScreen {
 
         // generating new maze here
         maze = new Maze();
-        maze.generateMaze();
-        curr = maze.getHead();
 
         // constants + panes
         HBox hBox = new HBox(370);
@@ -76,28 +72,11 @@ public class InitialGameScreen {
 
         // exit buttons
         exitLeft = new Button("Exit Left");
-        if (curr.getLeft() == null) {
-            exitLeft.setVisible(false);
-        } else {
-            exitLeft.setVisible(true);
-        }
-        exitLeft.setOnAction(e -> {
-            setCurr(curr.getLeft());
-            if (curr.getLeft() != null) {
-                exitLeft.setVisible(true);
-            }
-        });
         exitRight = new Button("Exit Right");
         hBox.getChildren().addAll(exitLeft, exitNotif, exitRight);
         hBox.setAlignment(Pos.CENTER_LEFT);
         exitTop = new Button("Exit Top");
-        exitTop.setOnAction(e -> {
-
-        });
         exitBottom = new Button("Exit Bottom");
-        exitBottom.setOnAction(e -> {
-
-        });
         vBox.getChildren().addAll(exitTop, exitBottom);
         vBox.setAlignment(Pos.TOP_CENTER);
 
@@ -112,9 +91,6 @@ public class InitialGameScreen {
         return primaryStage.getScene();
     }
 
-    public static void setCurr(Node next) {
-        curr = next;
-    }
     public static void main(String[] args) {
         launch(args);
     }
