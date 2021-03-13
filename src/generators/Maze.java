@@ -162,7 +162,6 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
-        nodeExit.imageBkgd = new Image("/mazeroomend.png");
         random = new Random();
         int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
             // room 18 is connected to exit ... right, bottom, left possible
@@ -187,48 +186,11 @@ public class Maze {
                 nodeExit.right = nodeFourteen;
             }
 
-//        int randExitPath = random.nextInt(3);
-
-//        if (randExitRoom == 0) {    // room 18 is connected to exit ... right, bottom, left possible
-//            if (randExitPath == 0) {    // right exit
-//                nodeEighteen.right = nodeExit;
-//                nodeExit.left = nodeEighteen;
-//            } else if (randExitPath == 1) { // bottom exit
-//                nodeEighteen.bottom = nodeExit;
-//                nodeExit.top = nodeEighteen;
-//            } else {    // left exit
-//                nodeEighteen.left = nodeExit;
-//                nodeExit.right = nodeEighteen;
-//            }
-//        } else {    // room 14 is connected to exit ... top, right, left possible
-//            if (randExitPath == 0) {    // right exit
-//                nodeFourteen.right = nodeExit;
-//                nodeExit.left = nodeFourteen;
-//            } else if (randExitPath == 1) { // top exit
-//                nodeFourteen.top = nodeExit;
-//                nodeExit.bottom = nodeFourteen;
-//            } else {    // left exit
-//                nodeFourteen.left = nodeExit;
-//                nodeExit.right = nodeFourteen;
-//            }
-//        }
         curr = startNode;
     }
     //getters
     public static Node getCurr() {
         return curr;
     }
-//    public static Button getExitLeft() {
-//        return exitLeft;
-//    }
-//    public static Button getExitRight() {
-//        return exitRight;
-//    }
-//    public static Button getExitTop() {
-//        return exitTop;
-//    }
-//    public static Button getExitBottom() {
-//        return exitBottom;
-    //}
 }
 
