@@ -1,4 +1,5 @@
 package generators;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -6,7 +7,8 @@ import javafx.scene.layout.*;
 import java.util.Random;
 
 public class Maze {
-    class Node {
+    private static Random random;
+    public class Node {
         int roomIdentifier;
         Node top;
         Node bottom;
@@ -14,8 +16,9 @@ public class Maze {
         Node right;
         Image imageBkgd;
         boolean isExit;
+        int roomNum;
 
-        Node (int roomIdentifier, boolean isExit) {
+        Node (int roomIdentifier, boolean isExit, int roomNum) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;
@@ -23,6 +26,7 @@ public class Maze {
             right = null;
             imageBkgd = null;
             this.isExit = isExit;
+            this.roomNum = roomNum;
         }
 
         public Node getRight() {
@@ -40,29 +44,38 @@ public class Maze {
         public Image getImageBkgd() {
             return imageBkgd;
         }
+        public boolean getIsExit() {
+            return isExit;
+        }
+        public int getRoomIdentifier() {
+            return roomIdentifier;
+        }
+        public int getRoomNum() {
+            return roomNum;
+        }
     }
-
+    private static Node curr;
     public Maze() {    // constructor
-        Node startNode = new Node(1, false);
-        Node nodeOne = new Node(4, false);
-        Node nodeTwo = new Node(3, false);
-        Node nodeThree = new Node(5, false);
-        Node nodeFour = new Node(2, false);
-        Node nodeFive = new Node(8, false);
-        Node nodeSix = new Node(6, false);
-        Node nodeSeven = new Node(4, false);
-        Node nodeEight = new Node(5, false);
-        Node nodeNine = new Node(6, false);
-        Node nodeTen = new Node(5, false);
-        Node nodeEleven = new Node(5, false);
-        Node nodeTwelve = new Node(7, false);
-        Node nodeThirteen = new Node(6, false);
-        Node nodeFourteen = new Node(10, false);
-        Node nodeFifteen = new Node(7, false);
-        Node nodeSixteen = new Node(9, false);
-        Node nodeSeventeen = new Node(8, false);
-        Node nodeEighteen = new Node(1, false);
-        Node nodeExit = new Node(12, true);
+        Node startNode = new Node(1, false,0);
+        Node nodeOne = new Node(4, false, 1);
+        Node nodeTwo = new Node(3, false, 2);
+        Node nodeThree = new Node(5, false, 3);
+        Node nodeFour = new Node(2, false, 4);
+        Node nodeFive = new Node(8, false, 5);
+        Node nodeSix = new Node(6, false, 6);
+        Node nodeSeven = new Node(4, false, 7);
+        Node nodeEight = new Node(5, false, 8);
+        Node nodeNine = new Node(6, false, 9);
+        Node nodeTen = new Node(5, false, 10);
+        Node nodeEleven = new Node(5, false, 11);
+        Node nodeTwelve = new Node(7, false, 12);
+        Node nodeThirteen = new Node(6, false, 13);
+        Node nodeFourteen = new Node(1, false, 14);
+        Node nodeFifteen = new Node(7, false, 15);
+        Node nodeSixteen = new Node(9, false, 16);
+        Node nodeSeventeen = new Node(8, false, 17);
+        Node nodeEighteen = new Node(1, false, 18);
+        Node nodeExit = new Node(12, true, -1);
 
         startNode.top = nodeOne;
         startNode.right = nodeTwo;
@@ -101,6 +114,7 @@ public class Maze {
 
         nodeSeven.top = nodeFive;
         nodeSeven.bottom = nodeEleven;
+        nodeSeven.right = nodeSix;
         nodeSeven.imageBkgd = new Image("/mazeroom7.png");
 
         nodeEight.right = nodeTen;
@@ -115,7 +129,7 @@ public class Maze {
         nodeTen.left = nodeEight;
         nodeTen.right = nodeEleven;
         nodeTen.bottom = nodeNine;
-        nodeTen.imageBkgd = new Image("/mazeroom8.png");
+        nodeTen.imageBkgd = new Image("/mazeroom10.png");
 
         nodeEleven.right = nodeTen;
         nodeEleven.bottom = nodeTwelve;
@@ -148,62 +162,72 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
-        Random random = new Random();
-        int randExitRoom = random.nextInt(2);   // exit room can be connected to 14 or 18
-        int randExitPath = random.nextInt(3);
-
-        if (randExitRoom == 0) {    // room 18 is connected to exit ... right, bottom, left possible
-            if (randExitPath == 0) {    // right exit
+        random = new Random();
+        int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
+            // room 18 is connected to exit ... right, bottom, left possible
+            if (randExitRoom == 0) {    // right exit
                 nodeEighteen.right = nodeExit;
                 nodeExit.left = nodeEighteen;
-            } else if (randExitPath == 1) { // bottom exit
+            } else if (randExitRoom == 1) { // bottom exit
                 nodeEighteen.bottom = nodeExit;
                 nodeExit.top = nodeEighteen;
-            } else {    // left exit
+            } else if (randExitRoom == 2){    // left exit
                 nodeEighteen.left = nodeExit;
                 nodeExit.right = nodeEighteen;
-            }
-        } else {    // room 14 is connected to exit ... top, right, left possible
-            if (randExitPath == 0) {    // right exit
+                // room 14 is connected to exit ... top, right, left possible
+            } else if (randExitRoom == 3) {    // right exit
                 nodeFourteen.right = nodeExit;
                 nodeExit.left = nodeFourteen;
-            } else if (randExitPath == 1) { // top exit
+            } else if (randExitRoom == 4) { // top exit
                 nodeFourteen.top = nodeExit;
                 nodeExit.bottom = nodeFourteen;
             } else {    // left exit
                 nodeFourteen.left = nodeExit;
                 nodeExit.right = nodeFourteen;
             }
-        }
 
-    }
-    public static BorderPane generateRoom(Node node) {
-        BorderPane root = new BorderPane();
-        Button exitLeft = new Button("Exit Left");
-        Button exitRight = new Button("Exit Right");
-        Button exitTop = new Button("Exit Top");
-        Button exitBottom = new Button("Exit Bottom");
-        if (node.getRight() != null) {
-            root.setRight(exitRight);
-        }
-        if (node.getLeft() != null) {
-            root.setLeft(exitLeft);
-        }
-        if (node.getTop() != null) {
-            root.setRight(exitTop);
-        }
-        if (node.getBottom() != null) {
-            root.setRight(exitBottom);
-        }
-        Image imageBkgd = node.getImageBkgd();
-        BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background background = new Background(bkgdSettings);
-        root.setBackground(background);
-        return root;
-    }
+//        int randExitPath = random.nextInt(3);
 
+//        if (randExitRoom == 0) {    // room 18 is connected to exit ... right, bottom, left possible
+//            if (randExitPath == 0) {    // right exit
+//                nodeEighteen.right = nodeExit;
+//                nodeExit.left = nodeEighteen;
+//            } else if (randExitPath == 1) { // bottom exit
+//                nodeEighteen.bottom = nodeExit;
+//                nodeExit.top = nodeEighteen;
+//            } else {    // left exit
+//                nodeEighteen.left = nodeExit;
+//                nodeExit.right = nodeEighteen;
+//            }
+//        } else {    // room 14 is connected to exit ... top, right, left possible
+//            if (randExitPath == 0) {    // right exit
+//                nodeFourteen.right = nodeExit;
+//                nodeExit.left = nodeFourteen;
+//            } else if (randExitPath == 1) { // top exit
+//                nodeFourteen.top = nodeExit;
+//                nodeExit.bottom = nodeFourteen;
+//            } else {    // left exit
+//                nodeFourteen.left = nodeExit;
+//                nodeExit.right = nodeFourteen;
+//            }
+//        }
+        curr = startNode;
+    }
+    //getters
+    public static Node getCurr() {
+        return curr;
+    }
+//    public static Button getExitLeft() {
+//        return exitLeft;
+//    }
+//    public static Button getExitRight() {
+//        return exitRight;
+//    }
+//    public static Button getExitTop() {
+//        return exitTop;
+//    }
+//    public static Button getExitBottom() {
+//        return exitBottom;
+    //}
 }
 
