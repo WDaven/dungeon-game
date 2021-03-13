@@ -203,7 +203,6 @@ public class InitializeConfigScreen {
                 hBoxFirstWeapon, textContinue, hBoxContinue);
 
         // to go to next scene ACTION
-        //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));
         // call method of scene 3
         return new Scene(vBoxMain, 400, 600);
     }
