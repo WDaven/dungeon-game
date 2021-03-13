@@ -1,7 +1,9 @@
 package scenes;
 
 import generators.Maze;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,14 +27,13 @@ public class InitialGameScreen {
     private static Label exitNotif;
     private static Maze maze;
     private static Node curr;
-    private static BorderPane root;
 
     public static Label getMoney() {
         return money;
     }
 
     public static void setMoney(Label money) {
-        scenes.InitialGameScreen.money = money;
+        InitialGameScreen.money = money;
     }
 
     public static Scene start(Stage primaryStage) {
@@ -67,7 +68,7 @@ public class InitialGameScreen {
         exitNotif.setAlignment(Pos.CENTER);
 
         // exit buttons
-        root = new BorderPane();
+        BorderPane root = new BorderPane();
         exitLeft = new Button("Exit Left");
         exitRight = new Button("Exit Right");
         exitTop = new Button("Exit Top");
@@ -107,18 +108,6 @@ public class InitialGameScreen {
         Background background = new Background(bkgdSettings);
         root.setBackground(background);
 
-        setExitLeftAction();
-        setExitRightAction();
-        setExitTopAction();
-        setExitBottomAction();
-
-        // final panes and showing scene
-        primaryStage.setTitle("DungeonCrawler");
-        primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        root.getChildren().addAll(hBox, vBox, pane, centerText);
-        return primaryStage.getScene();
-    }
-    public static void setExitLeftAction() {
         exitLeft.setOnAction(e -> {
             if (curr.getRoomNum() == 14 || curr.getRoomNum() == 18) {
                 if (curr.getLeft() == null) {
@@ -137,27 +126,20 @@ public class InitialGameScreen {
                 Background bkgd = new Background(bkgdSet);
                 root.setBackground(bkgd);
                 //button visibility
-                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 7
-                        || curr.getRoomIdentifier() == 10);
-                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 8
-                        || curr.getRoomIdentifier() == 11);
-                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 10);
-                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 11);
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
             }
         });
-    }
-
-    public static void setExitRightAction() {
         exitRight.setOnAction(e -> {
             if (curr.getRoomNum() == 14 || curr.getRoomNum() == 18) {
                 if (curr.getRight() == null) {
@@ -176,27 +158,20 @@ public class InitialGameScreen {
                 Background bkgd = new Background(bkgdSet);
                 root.setBackground(bkgd);
                 //button visibility
-                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 7
-                        || curr.getRoomIdentifier() == 10);
-                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 8
-                        || curr.getRoomIdentifier() == 11);
-                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 10);
-                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 11);
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
             }
         });
-    }
-
-    public static void setExitTopAction() {
         exitTop.setOnAction(e -> {
             if (curr.getRoomNum() == 14) {
                 if (curr.getTop() == null) {
@@ -215,28 +190,21 @@ public class InitialGameScreen {
                 Background bkgd = new Background(bkgdSet);
                 root.setBackground(bkgd);
                 //button visibility
-                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 7
-                        || curr.getRoomIdentifier() == 10);
-                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 8
-                        || curr.getRoomIdentifier() == 11);
-                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 10);
-                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 11);
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
 
             }
         });
-    }
-
-    public static void setExitBottomAction() {
         exitBottom.setOnAction(e -> {
             if (curr.getRoomNum() == 18) {
                 if (curr.getBottom() == null) {
@@ -255,24 +223,26 @@ public class InitialGameScreen {
                 Background bkgd = new Background(bkgdSet);
                 root.setBackground(bkgd);
                 //button visibility
-                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 7
-                        || curr.getRoomIdentifier() == 10);
-                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 8
-                        || curr.getRoomIdentifier() == 11);
-                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 10);
-                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2
-                        || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
-                        || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
-                        || curr.getRoomIdentifier() == 11);
+                exitTop.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 4 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 7 || curr.getRoomIdentifier() == 10);
+                exitRight.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 7
+                        || curr.getRoomIdentifier() == 8 || curr.getRoomIdentifier() == 11);
+                exitBottom.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 4
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 8
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 10);
+                exitLeft.setVisible(curr.getRoomIdentifier() == 1 || curr.getRoomIdentifier() == 2 || curr.getRoomIdentifier() == 3
+                        || curr.getRoomIdentifier() == 5 || curr.getRoomIdentifier() == 6
+                        || curr.getRoomIdentifier() == 9 || curr.getRoomIdentifier() == 11);
             }
         });
+
+        // final panes and showing scene
+        primaryStage.setTitle("DungeonCrawler");
+        primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
+        root.getChildren().addAll(hBox, vBox, pane, centerText);
+        return primaryStage.getScene();
     }
 
     public static void main(String[] args) {

@@ -1,26 +1,24 @@
 package generators;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+
 import java.util.Random;
 
 public class Maze {
     private static Random random;
-    private static Node curr;
-    //getters
-    public static Node getCurr() {
-        return curr;
-    }
-    //Node inner class
     public class Node {
-        private int roomIdentifier;
-        private Node top;
-        private Node bottom;
-        private Node left;
-        private Node right;
-        private Image imageBkgd;
-        private boolean isExit;
-        private int roomNum;
+        int roomIdentifier;
+        Node top;
+        Node bottom;
+        Node left;
+        Node right;
+        Image imageBkgd;
+        boolean isExit;
+        int roomNum;
 
-        Node(int roomIdentifier, boolean isExit, int roomNum) {
+        Node (int roomIdentifier, boolean isExit, int roomNum) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;
@@ -56,9 +54,9 @@ public class Maze {
             return roomNum;
         }
     }
-
+    private static Node curr;
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0);
+        Node startNode = new Node(1, false,0);
         Node nodeOne = new Node(4, false, 1);
         Node nodeTwo = new Node(3, false, 2);
         Node nodeThree = new Node(5, false, 3);
@@ -164,32 +162,35 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
-        nodeExit.imageBkgd = new Image("/mazeroomend.png");
-
         random = new Random();
         int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
-        // room 18 is connected to exit ... right, bottom, left possible
-        if (randExitRoom == 0) {    // right exit
-            nodeEighteen.right = nodeExit;
-            nodeExit.left = nodeEighteen;
-        } else if (randExitRoom == 1) { // bottom exit
-            nodeEighteen.bottom = nodeExit;
-            nodeExit.top = nodeEighteen;
-        } else if (randExitRoom == 2) {    // left exit
-            nodeEighteen.left = nodeExit;
-            nodeExit.right = nodeEighteen;
-        } else if (randExitRoom == 3) {    //ROOM 14// right exit
-            nodeFourteen.right = nodeExit;
-            nodeExit.left = nodeFourteen;
-        } else if (randExitRoom == 4) { // top exit
-            nodeFourteen.top = nodeExit;
-            nodeExit.bottom = nodeFourteen;
-        } else {    // left exit
-            nodeFourteen.left = nodeExit;
-            nodeExit.right = nodeFourteen;
-        }
+            // room 18 is connected to exit ... right, bottom, left possible
+            if (randExitRoom == 0) {    // right exit
+                nodeEighteen.right = nodeExit;
+                nodeExit.left = nodeEighteen;
+            } else if (randExitRoom == 1) { // bottom exit
+                nodeEighteen.bottom = nodeExit;
+                nodeExit.top = nodeEighteen;
+            } else if (randExitRoom == 2){    // left exit
+                nodeEighteen.left = nodeExit;
+                nodeExit.right = nodeEighteen;
+                // room 14 is connected to exit ... top, right, left possible
+            } else if (randExitRoom == 3) {    // right exit
+                nodeFourteen.right = nodeExit;
+                nodeExit.left = nodeFourteen;
+            } else if (randExitRoom == 4) { // top exit
+                nodeFourteen.top = nodeExit;
+                nodeExit.bottom = nodeFourteen;
+            } else {    // left exit
+                nodeFourteen.left = nodeExit;
+                nodeExit.right = nodeFourteen;
+            }
 
         curr = startNode;
+    }
+    //getters
+    public static Node getCurr() {
+        return curr;
     }
 }
 
