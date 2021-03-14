@@ -27,6 +27,10 @@ public class InitialGameScreen {
     private static Node curr;
     private static BorderPane root;
 
+    public static Node getCurr() {
+        return curr;
+    }
+
     public static Label getMoney() {
         return money;
     }
