@@ -175,7 +175,7 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
-        nodeExit.imageBkgd = new Image("/mazeroomend.png");
+        nodeExit.imageBkgd = new Image("/mazeroom.png");
 
         random = new Random();
         if (!randExitRoomSet) {
