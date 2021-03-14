@@ -106,3 +106,5 @@ fabric.properties
 .idea/codestream.xml
 .DS_Store
 # End of https://www.toptal.com/developers/gitignore/api/intellij
+
+checkstyle-*.jar
