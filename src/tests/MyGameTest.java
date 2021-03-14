@@ -117,6 +117,7 @@ public class MyGameTest extends ApplicationTest {
         clickOn("HARD");
         clickOn(getWeapon1());
         clickOn("CONTINUE");
-        verifyThat("Pick an exit", NodeMatchers.isNotNull());
+        verifyThat("Exit Right", NodeMatchers.isNotNull());
     }
+
 }

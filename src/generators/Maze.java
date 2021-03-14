@@ -5,6 +5,17 @@ import java.util.Random;
 public class Maze {
     private static Random random;
     private static Node curr;
+    private static int randExitRoom;
+    private static boolean randExitRoomSet;
+
+    public static void setRandExitRoomSet(boolean randExitRoomSet) {
+        Maze.randExitRoomSet = randExitRoomSet;
+    }
+
+    public static void setRandExitRoom(int randExitRoom) {
+        Maze.randExitRoom = randExitRoom;
+    }
+
     //getters
     public static Node getCurr() {
         return curr;
@@ -167,7 +178,9 @@ public class Maze {
         nodeExit.imageBkgd = new Image("/mazeroomend.png");
 
         random = new Random();
-        int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
+        if (!randExitRoomSet) {
+            randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
+        }
         // room 18 is connected to exit ... right, bottom, left possible
         if (randExitRoom == 0) {    // right exit
             nodeEighteen.right = nodeExit;
