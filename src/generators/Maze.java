@@ -9,7 +9,7 @@ public class Maze {
     private static Node curr;
     private static int randExitRoom;
     private static boolean randExitRoomSet;
-    private static Player player = new Player();
+    private static Player player = new Player(100);
 
     public static Player getPlayer() {
         return player;

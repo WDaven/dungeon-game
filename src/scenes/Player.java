@@ -16,9 +16,6 @@ public class Player {
         }
 
     }
-    public Player() {
-        new Player(100);
-    }
 
     public int getPlayer_Health() {
         return player_Health;
