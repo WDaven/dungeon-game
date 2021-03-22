@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import generators.Maze.*;
 
 
+import static generators.Maze.getPlayer;
 import static scenes.InitializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
@@ -21,6 +22,7 @@ public class InitialGameScreen {
     private static Button exitRight;
     private static Button exitTop;
     private static Button exitBottom;
+    private static Button attackMonster;
     private static Label money;
     private static Label exitNotif;
     private static Maze maze;
@@ -76,6 +78,7 @@ public class InitialGameScreen {
         exitRight = new Button("Exit Right");
         exitTop = new Button("Exit Top");
         exitBottom = new Button("Exit Bottom");
+        attackMonster = new Button("Attack!");
         //setting start room page
         curr = Maze.getCurr();
 
@@ -103,6 +106,12 @@ public class InitialGameScreen {
         holdB.setSpacing(10);
         root.setBottom(holdB);
 
+        HBox holdM = new HBox();
+        holdM.getChildren().add(attackMonster);
+        holdM.setAlignment(Pos.CENTER);
+        holdM.setSpacing(10);
+        root.setCenter(holdM);
+
         Image imageBkgd = curr.getImageBkgd();
         BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -115,12 +124,19 @@ public class InitialGameScreen {
         setExitRightAction();
         setExitTopAction();
         setExitBottomAction();
+        setAttackMonsterAction();
 
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
         root.getChildren().addAll(hBox, vBox, pane, centerText);
         return primaryStage.getScene();
+    }
+    public static void setAttackMonsterAction() {
+        int playerHealth = getPlayer().getPlayer_Health();
+        int monsterDamage = getCurr().getMonster().getMonsterDamage();
+        getPlayer().setPlayer_Health(playerHealth - monsterDamage);
+
     }
     public static void setExitLeftAction() {
         exitLeft.setOnAction(e -> {

@@ -3,6 +3,7 @@ package scenes;
 public class MonsterParent {
     public int monsterHealth;
     public int monsterDamage;
+    public boolean monsterIsDead;
     public MonsterParent() {
         this.monsterHealth = 10;
         this.monsterDamage = 1;
@@ -26,5 +27,9 @@ public class MonsterParent {
 
     public void setMonsterDamage(int monsterDamage) {
         this.monsterDamage = monsterDamage;
+    }
+
+    public boolean isMonsterIsDead() {
+        return monsterIsDead;
     }
 }

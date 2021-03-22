@@ -1,5 +1,7 @@
 package generators;
 import javafx.scene.image.Image;
+import scenes.*;
+
 import java.util.Random;
 
 public class Maze {
@@ -7,6 +9,11 @@ public class Maze {
     private static Node curr;
     private static int randExitRoom;
     private static boolean randExitRoomSet;
+    private static Player player = new Player();
+
+    public static Player getPlayer() {
+        return player;
+    }
 
     public static void setRandExitRoomSet(boolean randExitRoomSet) {
         Maze.randExitRoomSet = randExitRoomSet;
@@ -30,8 +37,9 @@ public class Maze {
         private Image imageBkgd;
         private boolean isExit;
         private int roomNum;
+        private MonsterParent monster;
 
-        Node(int roomIdentifier, boolean isExit, int roomNum) {
+        Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;
@@ -40,6 +48,7 @@ public class Maze {
             imageBkgd = null;
             this.isExit = isExit;
             this.roomNum = roomNum;
+            this.monster = monster;
         }
 
         public Node getRight() {
@@ -66,29 +75,30 @@ public class Maze {
         public int getRoomNum() {
             return roomNum;
         }
+        public MonsterParent getMonster() { return monster; }
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0);
-        Node nodeOne = new Node(4, false, 1);
-        Node nodeTwo = new Node(3, false, 2);
-        Node nodeThree = new Node(5, false, 3);
-        Node nodeFour = new Node(2, false, 4);
-        Node nodeFive = new Node(8, false, 5);
-        Node nodeSix = new Node(6, false, 6);
-        Node nodeSeven = new Node(4, false, 7);
-        Node nodeEight = new Node(5, false, 8);
-        Node nodeNine = new Node(6, false, 9);
-        Node nodeTen = new Node(5, false, 10);
-        Node nodeEleven = new Node(5, false, 11);
-        Node nodeTwelve = new Node(7, false, 12);
-        Node nodeThirteen = new Node(6, false, 13);
-        Node nodeFourteen = new Node(1, false, 14);
-        Node nodeFifteen = new Node(7, false, 15);
-        Node nodeSixteen = new Node(9, false, 16);
-        Node nodeSeventeen = new Node(8, false, 17);
-        Node nodeEighteen = new Node(1, false, 18);
-        Node nodeExit = new Node(12, true, -1);
+        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        Node nodeOne = new Node(4, false, 1, new MonsterBlue());
+        Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
+        Node nodeThree = new Node(5, false, 3, new MonsterRed());
+        Node nodeFour = new Node(2, false, 4, new MonsterBlue());
+        Node nodeFive = new Node(8, false, 5, new MonsterRed());
+        Node nodeSix = new Node(6, false, 6, new MonsterGreen());
+        Node nodeSeven = new Node(4, false, 7, new MonsterGreen());
+        Node nodeEight = new Node(5, false, 8, new MonsterGreen());
+        Node nodeNine = new Node(6, false, 9, new MonsterBlue());
+        Node nodeTen = new Node(5, false, 10, new MonsterRed());
+        Node nodeEleven = new Node(5, false, 11, new MonsterBlue());
+        Node nodeTwelve = new Node(7, false, 12, new MonsterGreen());
+        Node nodeThirteen = new Node(6, false, 13, new MonsterBlue());
+        Node nodeFourteen = new Node(1, false, 14, new MonsterRed());
+        Node nodeFifteen = new Node(7, false, 15, new MonsterGreen());
+        Node nodeSixteen = new Node(9, false, 16, new MonsterBlue());
+        Node nodeSeventeen = new Node(8, false, 17, new MonsterGreen());
+        Node nodeEighteen = new Node(1, false, 18, new MonsterGreen());
+        Node nodeExit = new Node(12, true, -1, new MonsterBlue());
 
         startNode.top = nodeOne;
         startNode.right = nodeTwo;
