@@ -12,6 +12,7 @@ import generators.Maze.*;
 
 
 import static generators.Maze.getPlayer;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static scenes.InitializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
@@ -112,6 +113,8 @@ public class InitialGameScreen {
         holdM.setSpacing(10);
         root.setCenter(holdM);
 
+
+
         Image imageBkgd = curr.getImageBkgd();
         BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -133,10 +136,24 @@ public class InitialGameScreen {
         return primaryStage.getScene();
     }
     public static void setAttackMonsterAction() {
-        int playerHealth = getPlayer().getPlayer_Health();
-        int monsterDamage = getCurr().getMonster().getMonsterDamage();
-        getPlayer().setPlayer_Health(playerHealth - monsterDamage);
-
+        attackMonster.setOnAction(e -> {
+            int playerHealth = getPlayer().getPlayer_Health();
+            int monsterDamage = curr.getMonster().getMonsterDamage();
+            int playerDamge= getPlayer().getPlayer_Damage();
+            int monsterHealth = curr.getMonster().getMonsterHealth();
+            if(curr.getMonster() instanceof MonsterBlue) {
+                System.out.println("BlueMonster");
+            }
+            getPlayer().setPlayer_Health(playerHealth - monsterDamage);
+            curr.getMonster().setMonsterHealth(monsterHealth - playerDamge);
+            if (curr.getMonster().getMonsterHealth() <= 0) {
+                curr.getMonster().setMonsterIsDead(true);
+            }
+            if (curr.getMonster().getMonsterIsDead()) {
+                System.out.println("MonsterIsDead");
+                attackMonster.setVisible(false);
+            }
+        });
     }
     public static void setExitLeftAction() {
         exitLeft.setOnAction(e -> {
@@ -173,6 +190,11 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
+                if(!(curr.getMonster().monsterIsDead)) {
+                    attackMonster.setVisible(true);
+                } else {
+                    attackMonster.setVisible(false);
+                }
             }
         });
     }
@@ -212,6 +234,11 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
+                if(!(curr.getMonster().monsterIsDead)) {
+                    attackMonster.setVisible(true);
+                } else {
+                    attackMonster.setVisible(false);
+                }
             }
         });
     }
@@ -251,6 +278,11 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
+                if(!(curr.getMonster().monsterIsDead)) {
+                    attackMonster.setVisible(true);
+                } else {
+                    attackMonster.setVisible(false);
+                }
 
             }
         });
@@ -291,6 +323,11 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
+                if(!(curr.getMonster().monsterIsDead)) {
+                    attackMonster.setVisible(true);
+                } else {
+                    attackMonster.setVisible(false);
+                }
             }
         });
     }

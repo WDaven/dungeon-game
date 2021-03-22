@@ -7,10 +7,12 @@ public class MonsterParent {
     public MonsterParent() {
         this.monsterHealth = 10;
         this.monsterDamage = 1;
+        this.monsterIsDead = false;
     }
     public MonsterParent(int monsterHealth, int monsterDamage){
         this.monsterHealth = monsterHealth;
         this.monsterDamage = monsterDamage;
+        this.monsterIsDead = false;
     }
 
     public int getMonsterHealth() {
@@ -29,7 +31,11 @@ public class MonsterParent {
         this.monsterDamage = monsterDamage;
     }
 
-    public boolean isMonsterIsDead() {
+    public boolean getMonsterIsDead() {
         return monsterIsDead;
+    }
+
+    public void setMonsterIsDead(boolean monsterIsDead) {
+        this.monsterIsDead = monsterIsDead;
     }
 }
