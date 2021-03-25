@@ -1,24 +1,46 @@
 package generators;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import scenes.*;
 
 import java.util.Random;
 
 public class Maze {
     private static Random random;
-    public class Node {
-        int roomIdentifier;
-        Node top;
-        Node bottom;
-        Node left;
-        Node right;
-        Image imageBkgd;
-        boolean isExit;
-        int roomNum;
+    private static Node curr;
+    private static int randExitRoom;
+    private static boolean randExitRoomSet;
+    private static Player player = new Player(100);
 
-        Node (int roomIdentifier, boolean isExit, int roomNum) {
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setRandExitRoomSet(boolean randExitRoomSet) {
+        Maze.randExitRoomSet = randExitRoomSet;
+    }
+
+    public static void setRandExitRoom(int randExitRoom) {
+        Maze.randExitRoom = randExitRoom;
+    }
+
+    //getters
+    public static Node getCurr() {
+        return curr;
+    }
+    //Node inner class
+    public class Node {
+        private int roomIdentifier;
+        private Node top;
+        private Node bottom;
+        private Node left;
+        private Node right;
+        private Image imageBkgd;
+        private boolean isExit;
+        private int roomNum;
+        private MonsterParent monster;
+        private boolean isVisited;
+
+        Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;
@@ -27,6 +49,8 @@ public class Maze {
             imageBkgd = null;
             this.isExit = isExit;
             this.roomNum = roomNum;
+            this.monster = monster;
+            isVisited = false;
         }
 
         public Node getRight() {
@@ -53,29 +77,37 @@ public class Maze {
         public int getRoomNum() {
             return roomNum;
         }
+        public boolean getIsVisted() {
+            return isVisited;
+        }
+        public void setIsVisted(boolean isVisited) {
+            this.isVisited = isVisited;
+        }
+        public MonsterParent getMonster() { return monster; }
     }
-    private static Node curr;
+
     public Maze() {    // constructor
-        Node startNode = new Node(1, false,0);
-        Node nodeOne = new Node(4, false, 1);
-        Node nodeTwo = new Node(3, false, 2);
-        Node nodeThree = new Node(5, false, 3);
-        Node nodeFour = new Node(2, false, 4);
-        Node nodeFive = new Node(8, false, 5);
-        Node nodeSix = new Node(6, false, 6);
-        Node nodeSeven = new Node(4, false, 7);
-        Node nodeEight = new Node(5, false, 8);
-        Node nodeNine = new Node(6, false, 9);
-        Node nodeTen = new Node(5, false, 10);
-        Node nodeEleven = new Node(5, false, 11);
-        Node nodeTwelve = new Node(7, false, 12);
-        Node nodeThirteen = new Node(6, false, 13);
-        Node nodeFourteen = new Node(1, false, 14);
-        Node nodeFifteen = new Node(7, false, 15);
-        Node nodeSixteen = new Node(9, false, 16);
-        Node nodeSeventeen = new Node(8, false, 17);
-        Node nodeEighteen = new Node(1, false, 18);
-        Node nodeExit = new Node(12, true, -1);
+        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        startNode.setIsVisted(true);
+        Node nodeOne = new Node(4, false, 1, new MonsterBlue());
+        Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
+        Node nodeThree = new Node(5, false, 3, new MonsterRed());
+        Node nodeFour = new Node(2, false, 4, new MonsterBlue());
+        Node nodeFive = new Node(8, false, 5, new MonsterRed());
+        Node nodeSix = new Node(6, false, 6, new MonsterGreen());
+        Node nodeSeven = new Node(4, false, 7, new MonsterGreen());
+        Node nodeEight = new Node(5, false, 8, new MonsterGreen());
+        Node nodeNine = new Node(6, false, 9, new MonsterBlue());
+        Node nodeTen = new Node(5, false, 10, new MonsterRed());
+        Node nodeEleven = new Node(5, false, 11, new MonsterBlue());
+        Node nodeTwelve = new Node(7, false, 12, new MonsterGreen());
+        Node nodeThirteen = new Node(6, false, 13, new MonsterBlue());
+        Node nodeFourteen = new Node(1, false, 14, new MonsterRed());
+        Node nodeFifteen = new Node(7, false, 15, new MonsterGreen());
+        Node nodeSixteen = new Node(9, false, 16, new MonsterBlue());
+        Node nodeSeventeen = new Node(8, false, 17, new MonsterGreen());
+        Node nodeEighteen = new Node(1, false, 18, new MonsterGreen());
+        Node nodeExit = new Node(12, true, -1, new MonsterBlue());
 
         startNode.top = nodeOne;
         startNode.right = nodeTwo;
@@ -162,35 +194,33 @@ public class Maze {
         nodeEighteen.top = nodeSeventeen;
         nodeEighteen.imageBkgd = new Image("/mazeroom18.png");
 
+        nodeExit.imageBkgd = new Image("/mazeroomend.png");
+
         random = new Random();
-        int randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
-            // room 18 is connected to exit ... right, bottom, left possible
-            if (randExitRoom == 0) {    // right exit
-                nodeEighteen.right = nodeExit;
-                nodeExit.left = nodeEighteen;
-            } else if (randExitRoom == 1) { // bottom exit
-                nodeEighteen.bottom = nodeExit;
-                nodeExit.top = nodeEighteen;
-            } else if (randExitRoom == 2){    // left exit
-                nodeEighteen.left = nodeExit;
-                nodeExit.right = nodeEighteen;
-                // room 14 is connected to exit ... top, right, left possible
-            } else if (randExitRoom == 3) {    // right exit
-                nodeFourteen.right = nodeExit;
-                nodeExit.left = nodeFourteen;
-            } else if (randExitRoom == 4) { // top exit
-                nodeFourteen.top = nodeExit;
-                nodeExit.bottom = nodeFourteen;
-            } else {    // left exit
-                nodeFourteen.left = nodeExit;
-                nodeExit.right = nodeFourteen;
-            }
+        if (!randExitRoomSet) {
+            randExitRoom = random.nextInt(6);   // exit room can be connected to 14 or 18
+        }
+        // room 18 is connected to exit ... right, bottom, left possible
+        if (randExitRoom == 0) {    // right exit
+            nodeEighteen.right = nodeExit;
+            nodeExit.left = nodeEighteen;
+        } else if (randExitRoom == 1) { // bottom exit
+            nodeEighteen.bottom = nodeExit;
+            nodeExit.top = nodeEighteen;
+        } else if (randExitRoom == 2) {    // left exit
+            nodeEighteen.left = nodeExit;
+            nodeExit.right = nodeEighteen;
+        } else if (randExitRoom == 3) {    //ROOM 14// right exit
+            nodeFourteen.right = nodeExit;
+            nodeExit.left = nodeFourteen;
+        } else if (randExitRoom == 4) { // top exit
+            nodeFourteen.top = nodeExit;
+            nodeExit.bottom = nodeFourteen;
+        } else {    // left exit
+            nodeFourteen.left = nodeExit;
+            nodeExit.right = nodeFourteen;
+        }
 
         curr = startNode;
     }
-    //getters
-    public static Node getCurr() {
-        return curr;
-    }
 }
-
