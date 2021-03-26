@@ -56,7 +56,6 @@ public class InitialGameScreen {
         HBox statusBox = new HBox(10);
 
         //Status labels
-        //statusBox.setAlignment(Pos.BOTTOM_CENTER);
         playerStatus = new Label("Player Health:");
         playerStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         playerStatus.setAlignment(Pos.CENTER_RIGHT);
@@ -64,15 +63,11 @@ public class InitialGameScreen {
         monsterStatus = new Label("Monster Health:");
         monsterStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         monsterStatus.setAlignment(Pos.CENTER_LEFT);
-        //monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
-        //statusBox.getChildren().add(playerStatus);
-        //statusBox.getChildren().add(monsterStatus);
 
         // Money label etc.
         money = new Label("Money:");
         money.setStyle("-fx-stroke:black; -fx-stroke-Width: 1; -fx-font: 15 arial");
         money.setAlignment(Pos.TOP_LEFT);
-        statusBox.getChildren().addAll(money, playerStatus,monsterStatus);
         int difficulty = getGameDifficulty();
         if (difficulty == 0) {
             money.setText(money.getText().concat(" 2000"));
@@ -83,7 +78,11 @@ public class InitialGameScreen {
         if (difficulty == 2) {
             money.setText(money.getText().concat(" 100"));
         }
+
+        //adding text labels
+        statusBox.getChildren().addAll(money, playerStatus,monsterStatus);
         centerText.getChildren().add(statusBox);
+
         // exit label
         exitNotif = new Label("Pick an exit");
         exitNotif.setAlignment(Pos.CENTER);
@@ -129,7 +128,6 @@ public class InitialGameScreen {
         root.setCenter(holdM);
 
 
-
         Image imageBkgd = curr.getImageBkgd();
         BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -143,7 +141,6 @@ public class InitialGameScreen {
         setExitTopAction();
         setExitBottomAction();
         setAttackMonsterAction(primaryStage);
-
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
@@ -156,6 +153,7 @@ public class InitialGameScreen {
             int monsterDamage = curr.getMonster().getMonsterDamage();
             int playerDamge= getPlayer().getPlayer_Damage();
             int monsterHealth = curr.getMonster().getMonsterHealth();
+            monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             if(curr.getMonster() instanceof MonsterBlue) {
                 System.out.println("BlueMonster");
             }
