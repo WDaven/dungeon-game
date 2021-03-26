@@ -195,6 +195,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: #0000FF");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: #00ff00");
+                } else if (curr.getMonster() instanceof MonsterRed) {
+                    attackMonster.setStyle("-fx-background-color: #ff0000");
+                }
             }
         });
     }
@@ -238,6 +245,13 @@ public class InitialGameScreen {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
+                }
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: #0000FF");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: #00ff00");
+                } else if (curr.getMonster() instanceof MonsterRed) {
+                    attackMonster.setStyle("-fx-background-color: #ff0000");
                 }
             }
         });
@@ -283,6 +297,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: #0000FF");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: #00ff00");
+                } else if (curr.getMonster() instanceof MonsterRed) {
+                    attackMonster.setStyle("-fx-background-color: #ff0000");
+                }
 
             }
         });
@@ -327,6 +348,13 @@ public class InitialGameScreen {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
+                }
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: #0000FF");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: #00ff00");
+                } else if (curr.getMonster() instanceof MonsterRed) {
+                    attackMonster.setStyle("-fx-background-color: #ff0000");
                 }
             }
         });
