@@ -11,7 +11,7 @@ import static scenes.InitializeConfigScreen.*;
 import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 
-public class M2Test extends ApplicationTest {
+public class M3Test extends ApplicationTest {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main main = new scenes.Main();
@@ -94,7 +94,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Left");
         clickOn("Exit Bottom");
         clickOn("Exit Right");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls1() {
@@ -115,7 +115,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Left");
         clickOn("Exit Bottom");
         clickOn("Exit Bottom");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls2() {
@@ -136,7 +136,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Left");
         clickOn("Exit Bottom");
         clickOn("Exit Left");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls3() {
@@ -158,7 +158,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Right");
         clickOn("Exit Top");
         clickOn("Exit Right");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls4() {
@@ -180,7 +180,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Right");
         clickOn("Exit Top");
         clickOn("Exit Top");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls5() {
@@ -202,7 +202,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Right");
         clickOn("Exit Top");
         clickOn("Exit Left");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void randomRolls6() {
@@ -224,7 +224,7 @@ public class M2Test extends ApplicationTest {
         clickOn("Exit Right");
         clickOn("Exit Top");
         clickOn("Exit Left");
-        assertEquals(-1,getCurr().getRoomNum());
+        assertEquals(-1, getCurr().getRoomNum());
     }
     @Test
     public void verifyStart() {
