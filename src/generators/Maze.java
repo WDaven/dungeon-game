@@ -39,6 +39,7 @@ public class Maze {
         private int roomNum;
         private MonsterParent monster;
         private boolean isVisited;
+        
 
         Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
