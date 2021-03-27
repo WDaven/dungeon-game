@@ -161,8 +161,7 @@ public class InitialGameScreen {
             if(curr.getMonster() instanceof MonsterBlue) {
                 System.out.println("BlueMonster");
             }
-            //getPlayer().setPlayer_Health(playerHealth - monsterDamage);
-            getPlayer().setPlayer_Health(0);
+            getPlayer().setPlayer_Health(playerHealth - monsterDamage);
             if (getPlayer().getPlayer_Health() <= 0) {
                 primaryStage.setScene(GameOver.start(primaryStage));
             }

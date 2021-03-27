@@ -8,4 +8,7 @@ public class MonsterBlue extends MonsterParent{
     public MonsterBlue(){
         super(15, 2);
     }
+    public MonsterBlue(boolean isDead) {
+        super(100,2,true);
+    }
 }

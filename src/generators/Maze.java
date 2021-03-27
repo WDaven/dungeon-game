@@ -87,7 +87,7 @@ public class Maze {
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        Node startNode = new Node(1, false, 0, new MonsterBlue(true));
         startNode.setIsVisted(true);
         Node nodeOne = new Node(4, false, 1, new MonsterBlue());
         Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
