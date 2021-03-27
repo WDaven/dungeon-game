@@ -165,8 +165,8 @@ public class M4Test extends ApplicationTest {
         clickOn(getWeapon1());
         clickOn("CONTINUE");
         clickOn("Exit Right");
-        getCurr().getMonster().setMonsterDamage(100);
-        getCurr().getMonster().setMonsterHealth(100);
+        //getCurr().getMonster().setMonsterDamage(100);
+        //getCurr().getMonster().setMonsterHealth(100);
         clickOn("Attack!");
         //verify that player dies
     }

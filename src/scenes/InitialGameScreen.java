@@ -32,6 +32,10 @@ public class InitialGameScreen {
     private static Label playerStatus;
     private static Label monsterStatus;
 
+    public static void hideMonster() {
+        attackMonster.setVisible(false);
+    }
+
     public static Node getCurr() {
         return curr;
     }
