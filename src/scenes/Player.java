@@ -7,7 +7,13 @@ public class Player {
     private int player_Damage;
     public Player(int player_Health) {
         this.player_Health=player_Health;
-        this.player_Damage = 12;
+        if (getCurrWeaponList()[0].equals(getWeapon1())) {
+            this.player_Damage = 8;
+        } else if (getCurrWeaponList()[0].equals(getWeapon2())) {
+            this.player_Damage = 10;
+        } else {
+            this.player_Damage = 12;
+        }
 
     }
 
