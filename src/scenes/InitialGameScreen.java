@@ -12,7 +12,7 @@ import generators.Maze.*;
 
 
 import static generators.Maze.getPlayer;
-import static org.hamcrest.core.IsInstanceOf.instanceOf;
+//import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static scenes.InitializeConfigScreen.getGameDifficulty;
 import static javafx.application.Application.launch;
 
@@ -29,6 +29,8 @@ public class InitialGameScreen {
     private static Maze maze;
     private static Node curr;
     private static BorderPane root;
+    private static Label playerStatus;
+    private static Label monsterStatus;
 
     public static Node getCurr() {
         return curr;
@@ -50,24 +52,36 @@ public class InitialGameScreen {
         // constants + panes
         HBox hBox = new HBox(370);
         VBox vBox = new VBox(bkgdHeight - 100);
-        Pane pane = new Pane();
         Pane centerText = new Pane();
+        HBox statusBox = new HBox(10);
+
+        //Status labels
+        playerStatus = new Label("Player Health:");
+        playerStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
+        playerStatus.setAlignment(Pos.CENTER_RIGHT);
+        playerStatus.setText(String.format("Player Health: %d",getPlayer().getPlayer_Health()));
+        monsterStatus = new Label("Monster Health:");
+        monsterStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
+        monsterStatus.setAlignment(Pos.CENTER_LEFT);
 
         // Money label etc.
         money = new Label("Money:");
-        money.setStyle("-fx-stroke:black; -fx-stroke-Width: 1; -fx-font: 30 arial");
+        money.setStyle("-fx-stroke:black; -fx-stroke-Width: 1; -fx-font: 15 arial");
         money.setAlignment(Pos.TOP_LEFT);
-        pane.getChildren().add(money);
         int difficulty = getGameDifficulty();
         if (difficulty == 0) {
-            money.setText("$2000");
+            money.setText(money.getText().concat(" 2000"));
         }
         if (difficulty == 1) {
-            money.setText("$1000");
+            money.setText(money.getText().concat(" 1000"));
         }
         if (difficulty == 2) {
-            money.setText("$100");
+            money.setText(money.getText().concat(" 100"));
         }
+
+        //adding text labels
+        statusBox.getChildren().addAll(money, playerStatus,monsterStatus);
+        centerText.getChildren().add(statusBox);
 
         // exit label
         exitNotif = new Label("Pick an exit");
@@ -114,7 +128,6 @@ public class InitialGameScreen {
         root.setCenter(holdM);
 
 
-
         Image imageBkgd = curr.getImageBkgd();
         BackgroundImage bkgdSettings = new BackgroundImage(imageBkgd, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -127,24 +140,28 @@ public class InitialGameScreen {
         setExitRightAction();
         setExitTopAction();
         setExitBottomAction();
-        setAttackMonsterAction();
-
+        setAttackMonsterAction(primaryStage);
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
-        root.getChildren().addAll(hBox, vBox, pane, centerText);
+        root.getChildren().addAll(hBox, vBox, centerText);
         return primaryStage.getScene();
     }
-    public static void setAttackMonsterAction() {
+    public static void setAttackMonsterAction(Stage primaryStage) {
         attackMonster.setOnAction(e -> {
             int playerHealth = getPlayer().getPlayer_Health();
             int monsterDamage = curr.getMonster().getMonsterDamage();
             int playerDamge= getPlayer().getPlayer_Damage();
             int monsterHealth = curr.getMonster().getMonsterHealth();
+            monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             if(curr.getMonster() instanceof MonsterBlue) {
                 System.out.println("BlueMonster");
             }
-            getPlayer().setPlayer_Health(playerHealth - monsterDamage);
+            //getPlayer().setPlayer_Health(playerHealth - monsterDamage);
+            getPlayer().setPlayer_Health(0);
+            if (getPlayer().getPlayer_Health() <= 0) {
+                primaryStage.setScene(GameOver.start(primaryStage));
+            }
             curr.getMonster().setMonsterHealth(monsterHealth - playerDamge);
             if (curr.getMonster().getMonsterHealth() <= 0) {
                 curr.getMonster().setMonsterIsDead(true);
@@ -164,7 +181,9 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getLeft() != null) {
+            if (curr.getLeft() != null && (curr.getMonster().getMonsterIsDead() ||
+                    (!curr.getMonster().getMonsterIsDead() && curr.getLeft().getIsVisted()))) {
+                curr.setIsVisted(true);
                 curr = curr.getLeft();
                 Image imgBkgd = curr.getImageBkgd();
                 BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
@@ -190,18 +209,7 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if(!(curr.getMonster().monsterIsDead)) {
-                    attackMonster.setVisible(true);
-                } else {
-                    attackMonster.setVisible(false);
-                }
-                if (curr.getMonster() instanceof MonsterBlue) {
-                    attackMonster.setStyle("-fx-background-color: #0000FF");
-                } else if (curr.getMonster() instanceof MonsterGreen) {
-                    attackMonster.setStyle("-fx-background-color: #00ff00");
-                } else if (curr.getMonster() instanceof MonsterRed) {
-                    attackMonster.setStyle("-fx-background-color: #ff0000");
-                }
+                attackMonster.setVisible(!(curr.getMonster().monsterIsDead));
             }
         });
     }
@@ -215,7 +223,9 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getRight() != null) {
+            if (curr.getRight() != null && (curr.getMonster().getMonsterIsDead() ||
+                    (!curr.getMonster().getMonsterIsDead() && curr.getRight().getIsVisted()))) {
+                curr.setIsVisted(true);
                 curr = curr.getRight();
                 Image imgBkgd = curr.getImageBkgd();
                 BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
@@ -246,13 +256,6 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
-                if (curr.getMonster() instanceof MonsterBlue) {
-                    attackMonster.setStyle("-fx-background-color: #0000FF");
-                } else if (curr.getMonster() instanceof MonsterGreen) {
-                    attackMonster.setStyle("-fx-background-color: #00ff00");
-                } else if (curr.getMonster() instanceof MonsterRed) {
-                    attackMonster.setStyle("-fx-background-color: #ff0000");
-                }
             }
         });
     }
@@ -266,7 +269,9 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getTop() != null) {
+            if (curr.getTop() != null && (curr.getMonster().getMonsterIsDead() ||
+                    (!curr.getMonster().getMonsterIsDead() && curr.getTop().getIsVisted()))) {
+                curr.setIsVisted(true);
                 curr = curr.getTop();
                 Image imgBkgd = curr.getImageBkgd();
                 BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
@@ -297,13 +302,6 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
-                if (curr.getMonster() instanceof MonsterBlue) {
-                    attackMonster.setStyle("-fx-background-color: #0000FF");
-                } else if (curr.getMonster() instanceof MonsterGreen) {
-                    attackMonster.setStyle("-fx-background-color: #00ff00");
-                } else if (curr.getMonster() instanceof MonsterRed) {
-                    attackMonster.setStyle("-fx-background-color: #ff0000");
-                }
 
             }
         });
@@ -318,7 +316,9 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getBottom() != null) {
+            if (curr.getBottom() != null && (curr.getMonster().getMonsterIsDead() ||
+                    (!curr.getMonster().getMonsterIsDead() && curr.getBottom().getIsVisted()))) {
+                curr.setIsVisted(true);
                 curr = curr.getBottom();
                 Image imgBkgd = curr.getImageBkgd();
                 BackgroundImage bkgdSet = new BackgroundImage(imgBkgd, BackgroundRepeat.NO_REPEAT,
@@ -348,13 +348,6 @@ public class InitialGameScreen {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
-                }
-                if (curr.getMonster() instanceof MonsterBlue) {
-                    attackMonster.setStyle("-fx-background-color: #0000FF");
-                } else if (curr.getMonster() instanceof MonsterGreen) {
-                    attackMonster.setStyle("-fx-background-color: #00ff00");
-                } else if (curr.getMonster() instanceof MonsterRed) {
-                    attackMonster.setStyle("-fx-background-color: #ff0000");
                 }
             }
         });
