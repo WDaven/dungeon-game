@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import static generators.Maze.getPlayer;
+
 public class GameOver {
     private static Pane background;
     private static Label gameOver;
@@ -21,6 +23,7 @@ public class GameOver {
         restart.setOnAction(e -> {
             primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
+        getPlayer().setPlayer_Health(100);
         return new Scene(background,400,500);
     }
 }

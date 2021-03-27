@@ -5,6 +5,6 @@ public class MonsterGreen extends MonsterParent{
         super(monsterHealth,monsterDamage);
     }
     public MonsterGreen(){
-        super(20, 1);
+        super(20, 6);
     }
 }

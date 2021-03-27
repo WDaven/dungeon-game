@@ -157,9 +157,7 @@ public class InitialGameScreen {
             int monsterDamage = curr.getMonster().getMonsterDamage();
             int playerDamge= getPlayer().getPlayer_Damage();
             int monsterHealth = curr.getMonster().getMonsterHealth();
-            monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             if(curr.getMonster() instanceof MonsterBlue) {
-                System.out.println("BlueMonster");
             }
             getPlayer().setPlayer_Health(playerHealth - monsterDamage);
             if (getPlayer().getPlayer_Health() <= 0) {
@@ -169,9 +167,11 @@ public class InitialGameScreen {
             if (curr.getMonster().getMonsterHealth() <= 0) {
                 curr.getMonster().setMonsterIsDead(true);
             }
+            monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
+            playerStatus.setText(String.format("Player Health: %d",getPlayer().getPlayer_Health()));
             if (curr.getMonster().getMonsterIsDead()) {
-                System.out.println("MonsterIsDead");
                 attackMonster.setVisible(false);
+                monsterStatus.setText("Monster Health: Dead");
             }
         });
     }
@@ -212,7 +212,12 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                attackMonster.setVisible(!(curr.getMonster().monsterIsDead));
+                if(!(curr.getMonster().monsterIsDead)) {
+                    attackMonster.setVisible(true);
+                } else {
+                    attackMonster.setVisible(false);
+                }
+                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             }
         });
     }
@@ -259,6 +264,7 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
+                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             }
         });
     }
@@ -305,6 +311,7 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
+                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
 
             }
         });
@@ -352,6 +359,7 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setVisible(false);
                 }
+                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
             }
         });
     }
