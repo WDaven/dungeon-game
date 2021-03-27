@@ -36,6 +36,24 @@ public class M4Test extends ApplicationTest {
         int newMonsterHp = getCurr().getMonster().getMonsterHealth();
         assertTrue(newMonsterHp < monsterHp);
     }
+
+    @Test
+    public void playerHPDecrease() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        int playerHp = Maze.getPlayer().getPlayer_Health();
+        clickOn("Attack!");
+        int newPlayerHp = Maze.getPlayer().getPlayer_Health();
+        assertTrue(newPlayerHp < playerHp);
+    }
     @Test
     public void monsterMarkedDead() {
         Maze.setRandExitRoomSet(true);
@@ -77,6 +95,66 @@ public class M4Test extends ApplicationTest {
         }
         verifyThat("Attack!", NodeMatchers.isInvisible());
     }
+    @Test
+    public void playerDamageOne() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        assertTrue(Maze.getPlayer().getPlayer_Damage() == 8);
+    }
+
+    @Test
+    public void playerDamageTwo() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon2());
+        clickOn("CONTINUE");
+        assertTrue(Maze.getPlayer().getPlayer_Damage() == 10);
+    }
+
+    @Test
+    public void playerDamageThree() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon3());
+        clickOn("CONTINUE");
+        assertTrue(Maze.getPlayer().getPlayer_Damage() == 12);
+    }
+    @Test
+    public void playerDamageMonsterHpChange() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        int monsterHp = getCurr().getMonster().getMonsterHealth();
+        clickOn("Attack!");
+        int newMonsterHp = getCurr().getMonster().getMonsterHealth();
+        assertTrue(newMonsterHp == monsterHp - 8);
+    }
+
+
 
 
 
