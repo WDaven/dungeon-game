@@ -153,6 +153,40 @@ public class M4Test extends ApplicationTest {
         int newMonsterHp = getCurr().getMonster().getMonsterHealth();
         assertTrue(newMonsterHp == monsterHp - 8);
     }
+    @Test
+    public void playerOnDeathRestart() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        getCurr().getMonster().setMonsterDamage(100);
+        getCurr().getMonster().setMonsterHealth(100);
+        clickOn("Attack!");
+        //verify that player dies
+    }
+    @Test
+    public void continueAliveMonster() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        write("testName");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        clickOn("Exit Right");
+        //verify pop-up or action blocks you from continuing
+        //while monster is alive
+    }
+
 
 
 

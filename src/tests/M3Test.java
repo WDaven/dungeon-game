@@ -17,6 +17,8 @@ public class M3Test extends ApplicationTest {
         Main main = new scenes.Main();
         main.start(primaryStage);
     }
+    //some of these test will need to be re-made to account for m4 conditions that
+    //monster must be dead before continue'ing
     @Test
     public void deadEndRoomEighteen() {
         Maze.setRandExitRoomSet(true);
