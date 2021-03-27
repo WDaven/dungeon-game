@@ -14,6 +14,11 @@ public class MonsterParent {
         this.monsterDamage = monsterDamage;
         this.monsterIsDead = false;
     }
+    public MonsterParent(int monsterHealth, int monsterDamage, boolean monsterIsDead){
+        this.monsterHealth = monsterHealth;
+        this.monsterDamage = monsterDamage;
+        this.monsterIsDead = true;
+    }
 
     public int getMonsterHealth() {
         return monsterHealth;

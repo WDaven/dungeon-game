@@ -194,6 +194,7 @@ public class InitializeConfigScreen {
                 alertEmpty.show();
             } else {
                 primaryStage.setScene(InitialGameScreen.start(primaryStage));
+                InitialGameScreen.hideMonster();
             }
         });
 

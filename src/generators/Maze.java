@@ -38,6 +38,7 @@ public class Maze {
         private boolean isExit;
         private int roomNum;
         private MonsterParent monster;
+        private boolean isVisited;
 
         Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
@@ -49,6 +50,7 @@ public class Maze {
             this.isExit = isExit;
             this.roomNum = roomNum;
             this.monster = monster;
+            isVisited = false;
         }
 
         public Node getRight() {
@@ -75,11 +77,18 @@ public class Maze {
         public int getRoomNum() {
             return roomNum;
         }
+        public boolean getIsVisted() {
+            return isVisited;
+        }
+        public void setIsVisted(boolean isVisited) {
+            this.isVisited = isVisited;
+        }
         public MonsterParent getMonster() { return monster; }
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        Node startNode = new Node(1, false, 0, new MonsterBlue(true));
+        startNode.setIsVisted(true);
         Node nodeOne = new Node(4, false, 1, new MonsterBlue());
         Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
         Node nodeThree = new Node(5, false, 3, new MonsterRed());
@@ -215,4 +224,3 @@ public class Maze {
         curr = startNode;
     }
 }
-
