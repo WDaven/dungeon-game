@@ -63,7 +63,7 @@ public class InitialGameScreen {
         playerStatus = new Label("Player Health:");
         playerStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         playerStatus.setAlignment(Pos.CENTER_RIGHT);
-        playerStatus.setText(String.format("Player Health: %d",getPlayer().getPlayer_Health()));
+        playerStatus.setText(String.format("Player Health: %d", getPlayer().getPlayer_Health()));
         monsterStatus = new Label("Monster Health:");
         monsterStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         monsterStatus.setAlignment(Pos.CENTER_LEFT);
@@ -84,7 +84,7 @@ public class InitialGameScreen {
         }
 
         //adding text labels
-        statusBox.getChildren().addAll(money, playerStatus,monsterStatus);
+        statusBox.getChildren().addAll(money, playerStatus, monsterStatus);
         centerText.getChildren().add(statusBox);
 
         // exit label
@@ -155,10 +155,8 @@ public class InitialGameScreen {
         attackMonster.setOnAction(e -> {
             int playerHealth = getPlayer().getPlayer_Health();
             int monsterDamage = curr.getMonster().getMonsterDamage();
-            int playerDamge= getPlayer().getPlayer_Damage();
+            int playerDamge = getPlayer().getPlayer_Damage();
             int monsterHealth = curr.getMonster().getMonsterHealth();
-            if(curr.getMonster() instanceof MonsterBlue) {
-            }
             getPlayer().setPlayer_Health(playerHealth - monsterDamage);
             if (getPlayer().getPlayer_Health() <= 0) {
                 primaryStage.setScene(GameOver.start(primaryStage));
@@ -167,8 +165,10 @@ public class InitialGameScreen {
             if (curr.getMonster().getMonsterHealth() <= 0) {
                 curr.getMonster().setMonsterIsDead(true);
             }
-            monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
-            playerStatus.setText(String.format("Player Health: %d",getPlayer().getPlayer_Health()));
+            monsterStatus.setText(String.format("Monster Health: %d",
+                    curr.getMonster().getMonsterHealth()));
+            playerStatus.setText(String.format("Player Health: %d",
+                    getPlayer().getPlayer_Health()));
             if (curr.getMonster().getMonsterIsDead()) {
                 attackMonster.setVisible(false);
                 monsterStatus.setText("Monster Health: Dead");
@@ -184,8 +184,8 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getLeft() != null && (curr.getMonster().getMonsterIsDead() ||
-                    (!curr.getMonster().getMonsterIsDead() && curr.getLeft().getIsVisted()))) {
+            if (curr.getLeft() != null && (curr.getMonster().getMonsterIsDead()
+                    || (!curr.getMonster().getMonsterIsDead() && curr.getLeft().getIsVisted()))) {
                 curr.setIsVisted(true);
                 curr = curr.getLeft();
                 Image imgBkgd = curr.getImageBkgd();
@@ -212,12 +212,13 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if(!(curr.getMonster().monsterIsDead)) {
+                if (!(curr.getMonster().monsterIsDead)) {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
-                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
+                monsterStatus.setText(String.format("Monster Health: %d",
+                        curr.getMonster().getMonsterHealth()));
             }
         });
     }

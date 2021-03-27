@@ -84,7 +84,9 @@ public class Maze {
         public void setIsVisted(boolean isVisited) {
             this.isVisited = isVisited;
         }
-        public MonsterParent getMonster() { return monster; }
+        public MonsterParent getMonster() {
+            return monster;
+        }
     }
 
     public Maze() {    // constructor
