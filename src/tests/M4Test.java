@@ -34,7 +34,7 @@ public class M4Test extends ApplicationTest {
         int monsterHp = getCurr().getMonster().getMonsterHealth();
         clickOn("Attack!");
         int newMonsterHp = getCurr().getMonster().getMonsterHealth();
-        assertTrue(monsterHp < newMonsterHp);
+        assertTrue(newMonsterHp < monsterHp);
     }
     @Test
     public void monsterMarkedDead() {
