@@ -165,10 +165,10 @@ public class M4Test extends ApplicationTest {
         clickOn(getWeapon1());
         clickOn("CONTINUE");
         clickOn("Exit Right");
-        //getCurr().getMonster().setMonsterDamage(100);
-        //getCurr().getMonster().setMonsterHealth(100);
+        getCurr().getMonster().setMonsterDamage(100);
+        getCurr().getMonster().setMonsterHealth(100);
         clickOn("Attack!");
-        //verify that player dies
+        verifyThat("Game Over. Please try again...", NodeMatchers.isVisible());
     }
     @Test
     public void continueAliveMonster() {
@@ -182,9 +182,10 @@ public class M4Test extends ApplicationTest {
         clickOn(getWeapon1());
         clickOn("CONTINUE");
         clickOn("Exit Right");
+        int currRoom = getCurr().getRoomIdentifier();
         clickOn("Exit Right");
-        //verify pop-up or action blocks you from continuing
-        //while monster is alive
+        int nextRoom = getCurr().getRoomIdentifier();
+        assertTrue(currRoom == nextRoom);
     }
 
 
