@@ -40,6 +40,7 @@ public class Maze {
         private MonsterParent monster;
         private boolean isVisited;
 
+
         Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
             top = null;
@@ -83,11 +84,13 @@ public class Maze {
         public void setIsVisted(boolean isVisited) {
             this.isVisited = isVisited;
         }
-        public MonsterParent getMonster() { return monster; }
+        public MonsterParent getMonster() {
+            return monster;
+        }
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        Node startNode = new Node(1, false, 0, new MonsterBlue(true));
         startNode.setIsVisted(true);
         Node nodeOne = new Node(4, false, 1, new MonsterBlue());
         Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
