@@ -10,7 +10,6 @@ import org.testfx.matcher.base.NodeMatchers;
 import static org.junit.Assert.assertTrue;
 import static scenes.InitialGameScreen.getCurr;
 import static scenes.InitializeConfigScreen.*;
-import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 
 public class M4Test extends ApplicationTest {
@@ -49,9 +48,9 @@ public class M4Test extends ApplicationTest {
         clickOn(getWeapon1());
         clickOn("CONTINUE");
         clickOn("Exit Right");
-        int playerHp = Maze.getPlayer().getPlayer_Health();
+        int playerHp = Maze.getPlayer().getPlayerHealth();
         clickOn("Attack!");
-        int newPlayerHp = Maze.getPlayer().getPlayer_Health();
+        int newPlayerHp = Maze.getPlayer().getPlayerHealth();
         assertTrue(newPlayerHp < playerHp);
     }
     @Test
@@ -106,7 +105,7 @@ public class M4Test extends ApplicationTest {
         clickOn("HARD");
         clickOn(getWeapon1());
         clickOn("CONTINUE");
-        assertTrue(Maze.getPlayer().getPlayer_Damage() == 8);
+        assertTrue(Maze.getPlayer().getPlayerDamage() == 8);
     }
 
     @Test
@@ -120,7 +119,7 @@ public class M4Test extends ApplicationTest {
         clickOn("HARD");
         clickOn(getWeapon2());
         clickOn("CONTINUE");
-        assertTrue(Maze.getPlayer().getPlayer_Damage() == 10);
+        assertTrue(Maze.getPlayer().getPlayerDamage() == 10);
     }
 
     @Test
@@ -134,7 +133,7 @@ public class M4Test extends ApplicationTest {
         clickOn("HARD");
         clickOn(getWeapon3());
         clickOn("CONTINUE");
-        assertTrue(Maze.getPlayer().getPlayer_Damage() == 12);
+        assertTrue(Maze.getPlayer().getPlayerDamage() == 12);
     }
     @Test
     public void playerDamageMonsterHpChange() {
@@ -187,10 +186,4 @@ public class M4Test extends ApplicationTest {
         int nextRoom = getCurr().getRoomIdentifier();
         assertTrue(currRoom == nextRoom);
     }
-
-
-
-
-
-
 }

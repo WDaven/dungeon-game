@@ -63,7 +63,7 @@ public class InitialGameScreen {
         playerStatus = new Label("Player Health:");
         playerStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         playerStatus.setAlignment(Pos.CENTER_RIGHT);
-        playerStatus.setText(String.format("Player Health: %d", getPlayer().getPlayer_Health()));
+        playerStatus.setText(String.format("Player Health: %d", getPlayer().getPlayerHealth()));
         monsterStatus = new Label("Monster Health:");
         monsterStatus.setStyle("-fx-stroke:red; -fx-stroke-Width: 1; -fx-font: 15 arial");
         monsterStatus.setAlignment(Pos.CENTER_LEFT);
@@ -153,22 +153,22 @@ public class InitialGameScreen {
     }
     public static void setAttackMonsterAction(Stage primaryStage) {
         attackMonster.setOnAction(e -> {
-            int playerHealth = getPlayer().getPlayer_Health();
+            int playerHealth = getPlayer().getPlayerHealth();
             int monsterDamage = curr.getMonster().getMonsterDamage();
-            int playerDamge = getPlayer().getPlayer_Damage();
+            int playerDamage = getPlayer().getPlayerDamage();
             int monsterHealth = curr.getMonster().getMonsterHealth();
-            getPlayer().setPlayer_Health(playerHealth - monsterDamage);
-            if (getPlayer().getPlayer_Health() <= 0) {
+            getPlayer().setPlayerHealth(playerHealth - monsterDamage);
+            if (getPlayer().getPlayerHealth() <= 0) {
                 primaryStage.setScene(GameOver.start(primaryStage));
             }
-            curr.getMonster().setMonsterHealth(monsterHealth - playerDamge);
+            curr.getMonster().setMonsterHealth(monsterHealth - playerDamage);
             if (curr.getMonster().getMonsterHealth() <= 0) {
                 curr.getMonster().setMonsterIsDead(true);
             }
             monsterStatus.setText(String.format("Monster Health: %d",
                     curr.getMonster().getMonsterHealth()));
             playerStatus.setText(String.format("Player Health: %d",
-                    getPlayer().getPlayer_Health()));
+                    getPlayer().getPlayerHealth()));
             if (curr.getMonster().getMonsterIsDead()) {
                 attackMonster.setVisible(false);
                 monsterStatus.setText("Monster Health: Dead");
@@ -212,7 +212,14 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if (!(curr.getMonster().monsterIsDead)) {
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: blue");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: green");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: red");
+                }
+                if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
@@ -232,8 +239,8 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getRight() != null && (curr.getMonster().getMonsterIsDead() ||
-                    (!curr.getMonster().getMonsterIsDead() && curr.getRight().getIsVisted()))) {
+            if (curr.getRight() != null && (curr.getMonster().getMonsterIsDead()
+                    || (!curr.getMonster().getMonsterIsDead() && curr.getRight().getIsVisted()))) {
                 curr.setIsVisted(true);
                 curr = curr.getRight();
                 Image imgBkgd = curr.getImageBkgd();
@@ -260,12 +267,20 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if(!(curr.getMonster().monsterIsDead)) {
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: blue");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: green");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: red");
+                }
+                if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
-                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
+                monsterStatus.setText(String.format("Monster Health: %d",
+                        curr.getMonster().getMonsterHealth()));
             }
         });
     }
@@ -279,8 +294,8 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getTop() != null && (curr.getMonster().getMonsterIsDead() ||
-                    (!curr.getMonster().getMonsterIsDead() && curr.getTop().getIsVisted()))) {
+            if (curr.getTop() != null && (curr.getMonster().getMonsterIsDead()
+                    || (!curr.getMonster().getMonsterIsDead() && curr.getTop().getIsVisted()))) {
                 curr.setIsVisted(true);
                 curr = curr.getTop();
                 Image imgBkgd = curr.getImageBkgd();
@@ -307,13 +322,20 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if(!(curr.getMonster().monsterIsDead)) {
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: blue");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: green");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: red");
+                }
+                if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
-                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
-
+                monsterStatus.setText(String.format("Monster Health: %d",
+                        curr.getMonster().getMonsterHealth()));
             }
         });
     }
@@ -327,8 +349,8 @@ public class InitialGameScreen {
                     alertExit.show();
                 }
             }
-            if (curr.getBottom() != null && (curr.getMonster().getMonsterIsDead() ||
-                    (!curr.getMonster().getMonsterIsDead() && curr.getBottom().getIsVisted()))) {
+            if (curr.getBottom() != null && (curr.getMonster().getMonsterIsDead()
+                    || (!curr.getMonster().getMonsterIsDead() && curr.getBottom().getIsVisted()))) {
                 curr.setIsVisted(true);
                 curr = curr.getBottom();
                 Image imgBkgd = curr.getImageBkgd();
@@ -355,12 +377,20 @@ public class InitialGameScreen {
                         || curr.getRoomIdentifier() == 3 || curr.getRoomIdentifier() == 5
                         || curr.getRoomIdentifier() == 6 || curr.getRoomIdentifier() == 9
                         || curr.getRoomIdentifier() == 11);
-                if(!(curr.getMonster().monsterIsDead)) {
+                if (curr.getMonster() instanceof MonsterBlue) {
+                    attackMonster.setStyle("-fx-background-color: blue");
+                } else if (curr.getMonster() instanceof MonsterGreen) {
+                    attackMonster.setStyle("-fx-background-color: green");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: red");
+                }
+                if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
-                monsterStatus.setText(String.format("Monster Health: %d",curr.getMonster().getMonsterHealth()));
+                monsterStatus.setText(String.format("Monster Health: %d",
+                        curr.getMonster().getMonsterHealth()));
             }
         });
     }

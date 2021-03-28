@@ -23,8 +23,7 @@ public class GameOver {
         restart.setOnAction(e -> {
             primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
-        getPlayer().setPlayer_Health(100);
+        getPlayer().setPlayerHealth(100);
         return new Scene(background, 400, 500);
     }
 }
-
