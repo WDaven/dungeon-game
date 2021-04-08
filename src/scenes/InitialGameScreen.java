@@ -152,8 +152,8 @@ public class InitialGameScreen {
         setExitRightAction();
         setExitTopAction();
         setExitBottomAction();
+        setInventoryAction(primaryStage, maze);
         setAttackMonsterAction(primaryStage);
-        setInventoryAction(primaryStage, maze, Maze.getCurr());
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
@@ -404,7 +404,7 @@ public class InitialGameScreen {
         });
     }
 
-    public static void setInventoryAction(Stage primaryStage, Maze maze, Node curr) {
+    public static void setInventoryAction(Stage primaryStage, Maze maze) {
         inventory.setOnAction( e -> {
             primaryStage.setScene(Inventory.start(primaryStage, maze, curr));
         });
