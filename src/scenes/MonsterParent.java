@@ -1,18 +1,23 @@
 package scenes;
 
 public class MonsterParent {
-    public int monsterHealth;
-    public int monsterDamage;
-    public boolean monsterIsDead;
+    private int monsterHealth;
+    private int monsterDamage;
+    private boolean monsterIsDead;
     public MonsterParent() {
         this.monsterHealth = 10;
         this.monsterDamage = 1;
         this.monsterIsDead = false;
     }
-    public MonsterParent(int monsterHealth, int monsterDamage){
+    public MonsterParent(int monsterHealth, int monsterDamage) {
         this.monsterHealth = monsterHealth;
         this.monsterDamage = monsterDamage;
         this.monsterIsDead = false;
+    }
+    public MonsterParent(int monsterHealth, int monsterDamage, boolean monsterIsDead) {
+        this.monsterHealth = monsterHealth;
+        this.monsterDamage = monsterDamage;
+        this.monsterIsDead = true;
     }
 
     public int getMonsterHealth() {

@@ -1,5 +1,6 @@
 package scenes;
 
+import generators.Maze;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -159,18 +160,21 @@ public class InitializeConfigScreen {
             buttonWeapon1.setStyle("-fx-background-color: green;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
+            Maze.getPlayer().setPlayerDamage(8);
         });
         buttonWeapon2.setOnAction(e -> {
             currWeaponList[0] = weapon2;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: green;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
+            Maze.getPlayer().setPlayerDamage(10);
         });
         buttonWeapon3.setOnAction(e -> {
             currWeaponList[0] = weapon3;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: green;");
+            Maze.getPlayer().setPlayerDamage(12);
         });
 
         HBox hBoxFirstWeapon = new HBox();
@@ -189,7 +193,8 @@ public class InitializeConfigScreen {
                                 + "AND choose weapon to continue!"));
                 alertEmpty.show();
             } else {
-                primaryStage.setScene(InitialGameScreen.start(primaryStage));
+                primaryStage.setScene(InitialGameScreen.start(primaryStage, new Maze()));
+                InitialGameScreen.hideMonster();
             }
         });
 
@@ -203,7 +208,6 @@ public class InitializeConfigScreen {
                 hBoxFirstWeapon, textContinue, hBoxContinue);
 
         // to go to next scene ACTION
-        //buttonNextScreen.setOnAction(e -> stage.setScene(initScene3()));
         // call method of scene 3
         return new Scene(vBoxMain, 400, 600);
     }

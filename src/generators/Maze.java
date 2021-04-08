@@ -11,10 +11,15 @@ public class Maze {
     private static boolean randExitRoomSet;
     private static Player player = new Player(100);
 
+    //getters
+    public static Node getCurr() {
+        return curr;
+    }
+
     public static Player getPlayer() {
         return player;
     }
-
+    //setters
     public static void setRandExitRoomSet(boolean randExitRoomSet) {
         Maze.randExitRoomSet = randExitRoomSet;
     }
@@ -23,10 +28,8 @@ public class Maze {
         Maze.randExitRoom = randExitRoom;
     }
 
-    //getters
-    public static Node getCurr() {
-        return curr;
-    }
+    public static void setCurr(Node curr) {Maze.curr = curr;}
+
     //Node inner class
     public class Node {
         private int roomIdentifier;
@@ -40,6 +43,7 @@ public class Maze {
         private MonsterParent monster;
         private boolean isVisited;
 
+      
         Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
             top = null;
@@ -83,11 +87,13 @@ public class Maze {
         public void setIsVisted(boolean isVisited) {
             this.isVisited = isVisited;
         }
-        public MonsterParent getMonster() { return monster; }
+        public MonsterParent getMonster() {
+            return monster;
+        }
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0, new MonsterBlue());
+        Node startNode = new Node(1, false, 0, new MonsterBlue(true));
         startNode.setIsVisted(true);
         Node nodeOne = new Node(4, false, 1, new MonsterBlue());
         Node nodeTwo = new Node(3, false, 2, new MonsterGreen());
