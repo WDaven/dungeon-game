@@ -193,6 +193,13 @@ public class InitializeConfigScreen {
                                 + "AND choose weapon to continue!"));
                 alertEmpty.show();
             } else {
+                if (Maze.getPlayer().getPlayerDamage() == 8) {
+                    Inventory.setNumDaggers(1);
+                } else if (Maze.getPlayer().getPlayerDamage() == 10) {
+                    Inventory.setNumSwords(1);
+                } else {
+                    Inventory.setNumGSwords(1);
+                }
                 primaryStage.setScene(InitialGameScreen.start(primaryStage, new Maze()));
                 InitialGameScreen.hideMonster();
             }
