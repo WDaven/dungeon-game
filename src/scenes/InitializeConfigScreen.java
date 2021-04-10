@@ -193,7 +193,7 @@ public class InitializeConfigScreen {
                                 + "AND choose weapon to continue!"));
                 alertEmpty.show();
             } else {
-                primaryStage.setScene(InitialGameScreen.start(primaryStage));
+                primaryStage.setScene(InitialGameScreen.start(primaryStage, new Maze()));
                 InitialGameScreen.hideMonster();
             }
         });

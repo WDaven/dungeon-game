@@ -186,10 +186,4 @@ public class M4Test extends ApplicationTest {
         int nextRoom = getCurr().getRoomIdentifier();
         assertTrue(currRoom == nextRoom);
     }
-
-
-
-
-
-
 }
