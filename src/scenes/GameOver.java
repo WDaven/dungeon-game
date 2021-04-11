@@ -21,6 +21,12 @@ public class GameOver {
         restart.setAlignment(Pos.CENTER);
         background.getChildren().addAll(gameOver, restart);
         restart.setOnAction(e -> {
+            Inventory.setNumDaggers(0);
+            Inventory.setNumSwords(0);
+            Inventory.setNumGSwords(0);
+            Inventory.setNumAPotion(0);
+            Inventory.setNumHPotion(0);
+            Inventory.setNumCrystals(0);
             primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
         getPlayer().setPlayer_Health(100);
