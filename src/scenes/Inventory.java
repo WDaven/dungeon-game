@@ -113,6 +113,14 @@ public class Inventory {
         aPotion.setText(aPotion.getText().concat(String.valueOf(getNumAPotion())));
         potionsBox.getChildren().addAll(potions, hPotion, aPotion);
 
+        hPotion.setOnAction(e -> {
+            getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
+        });
+        aPotion.setOnAction(e -> {
+            getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            getPlayer().setCurrAttackNumber(5);
+        });
+
         // crystals box
         VBox crystalsBox = new VBox(10);
         crystals= new Button("Magic Crystals: ");
@@ -130,5 +138,6 @@ public class Inventory {
             primaryStage.setScene(InitialGameScreen.start(primaryStage, maze));
         });
         return new Scene(background, 400, 500);
+
     }
 }

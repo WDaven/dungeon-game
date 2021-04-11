@@ -15,6 +15,10 @@ public class Player {
         return currAttackNumber;
     }
 
+    public void setCurrAttackNumber(int currAttackNumber) {
+        this.currAttackNumber = currAttackNumber;
+    }
+
     public int getPlayerHealth() {
         return playerHealth;
     }
