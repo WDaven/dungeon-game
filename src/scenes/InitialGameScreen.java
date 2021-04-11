@@ -186,6 +186,12 @@ public class InitialGameScreen {
     }
     public static void setAttackMonsterAction(Stage primaryStage) {
         attackMonster.setOnAction(e -> {
+            if (getPlayer().getCurrAttackNumber() >= 1) {
+                getPlayer().setCurrAttackNumber(getPlayer().getCurrAttackNumber() - 1);
+                if (getPlayer().getCurrAttackNumber() == 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() - 10);
+                }
+            }
             int playerHealth = getPlayer().getPlayerHealth();
             int monsterDamage = curr.getMonster().getMonsterDamage();
             int playerDamage = getPlayer().getPlayerDamage();

@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -18,17 +19,17 @@ public class Inventory {
     private static Button back;
     private static Label weapons;
     private static int numDaggers;
-    private static Label daggers;
-    private static Label swords;
-    private static Label greatSwords;
+    private static Button daggers;
+    private static Button swords;
+    private static Button greatSwords;
     private static int numSwords;
     private static int numGSwords;
     private static Label potions;
-    private static Label hPotion;
-    private static Label aPotion;
+    private static Button hPotion;
+    private static Button aPotion;
     private static int numHPotion;
     private static int numAPotion;
-    private static Label crystals;
+    private static Button crystals;
     private static int numCrystals;
 
     // setters
@@ -96,28 +97,59 @@ public class Inventory {
         // weapons vbox
         VBox weaponsBox = new VBox(10);
         weapons = new Label("Weapons:");
-        daggers = new Label("Daggers: ");
-        swords = new Label("Swords: ");
-        greatSwords = new Label("Great Swords ");
+        daggers = new Button("Daggers: ");
+        swords = new Button("Swords: ");
+        greatSwords = new Button("Great Swords ");
         daggers.setText(daggers.getText().concat(String.valueOf(getNumDaggers())));
         swords.setText(swords.getText().concat(String.valueOf(getNumSwords())));
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
         weaponsBox.getChildren().addAll(weapons, daggers, swords, greatSwords);
 
+        daggers.setOnAction(e -> {
+            getPlayer().setPlayerDamage(8);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+        swords.setOnAction(e -> {
+            getPlayer().setPlayerDamage(10);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+        greatSwords.setOnAction(e -> {
+            getPlayer().setPlayerDamage(12);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+
         // potions box
         VBox potionsBox = new VBox(10);
         potions = new Label("Potions: ");
-        hPotion = new Label("Health Potions: ");
-        aPotion = new Label("Attack Potions: ");
+        hPotion = new Button("Health Potions: ");
+        aPotion = new Button("Attack Potions: ");
         hPotion.setText(hPotion.getText().concat(String.valueOf(getNumHPotion())));
         aPotion.setText(aPotion.getText().concat(String.valueOf(getNumAPotion())));
         potionsBox.getChildren().addAll(potions, hPotion, aPotion);
 
+        hPotion.setOnAction(e -> {
+            getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
+        });
+        aPotion.setOnAction(e -> {
+            getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            getPlayer().setCurrAttackNumber(5);
+        });
+
         // crystals box
         VBox crystalsBox = new VBox(10);
-        crystals= new Label("Magic Crystals: ");
+        crystals= new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
+
+        crystals.setOnAction(e -> {
+            primaryStage.setScene(GameOver.start(primaryStage));
+        });
 
         back = new Button("Return to Game");
         background = new BorderPane();
@@ -130,5 +162,6 @@ public class Inventory {
             primaryStage.setScene(InitialGameScreen.start(primaryStage, maze));
         });
         return new Scene(background, 400, 500);
+
     }
 }
