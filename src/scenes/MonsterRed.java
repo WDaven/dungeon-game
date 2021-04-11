@@ -1,10 +1,10 @@
 package scenes;
 
-public class MonsterRed extends MonsterParent{
-    public MonsterRed(int monsterHealth, int monsterDamage){
-        super(monsterHealth,monsterDamage);
+public class MonsterRed extends MonsterParent {
+    public MonsterRed(int monsterHealth, int monsterDamage) {
+        super(monsterHealth, monsterDamage);
     }
-    public MonsterRed(){
+    public MonsterRed() {
         super(10, 8);
     }
 }
