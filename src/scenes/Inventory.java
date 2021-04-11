@@ -104,6 +104,25 @@ public class Inventory {
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
         weaponsBox.getChildren().addAll(weapons, daggers, swords, greatSwords);
 
+        daggers.setOnAction(e -> {
+            getPlayer().setPlayerDamage(8);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+        swords.setOnAction(e -> {
+            getPlayer().setPlayerDamage(10);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+        greatSwords.setOnAction(e -> {
+            getPlayer().setPlayerDamage(12);
+            if (getPlayer().getCurrAttackNumber() > 0) {
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            }
+        });
+
         // potions box
         VBox potionsBox = new VBox(10);
         potions = new Label("Potions: ");
