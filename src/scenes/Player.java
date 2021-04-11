@@ -3,10 +3,16 @@ package scenes;
 public class Player {
     private int playerHealth;
     private int playerDamage;
+    private int currAttackNumber;
     public Player(int playerHealth) {
         this.playerHealth = playerHealth;
         this.playerDamage = 12;
+        this.currAttackNumber = 0;
 
+    }
+
+    public int getCurrAttackNumber() {
+        return currAttackNumber;
     }
 
     public int getPlayerHealth() {
@@ -24,4 +30,5 @@ public class Player {
     public void setPlayerDamage(int playerDamage) {
         this.playerDamage = playerDamage;
     }
+
 }

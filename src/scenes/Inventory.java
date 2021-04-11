@@ -18,17 +18,17 @@ public class Inventory {
     private static Button back;
     private static Label weapons;
     private static int numDaggers;
-    private static Label daggers;
-    private static Label swords;
-    private static Label greatSwords;
+    private static Button daggers;
+    private static Button swords;
+    private static Button greatSwords;
     private static int numSwords;
     private static int numGSwords;
     private static Label potions;
-    private static Label hPotion;
-    private static Label aPotion;
+    private static Button hPotion;
+    private static Button aPotion;
     private static int numHPotion;
     private static int numAPotion;
-    private static Label crystals;
+    private static Button crystals;
     private static int numCrystals;
 
     // setters
@@ -96,9 +96,9 @@ public class Inventory {
         // weapons vbox
         VBox weaponsBox = new VBox(10);
         weapons = new Label("Weapons:");
-        daggers = new Label("Daggers: ");
-        swords = new Label("Swords: ");
-        greatSwords = new Label("Great Swords ");
+        daggers = new Button("Daggers: ");
+        swords = new Button("Swords: ");
+        greatSwords = new Button("Great Swords ");
         daggers.setText(daggers.getText().concat(String.valueOf(getNumDaggers())));
         swords.setText(swords.getText().concat(String.valueOf(getNumSwords())));
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
@@ -107,15 +107,15 @@ public class Inventory {
         // potions box
         VBox potionsBox = new VBox(10);
         potions = new Label("Potions: ");
-        hPotion = new Label("Health Potions: ");
-        aPotion = new Label("Attack Potions: ");
+        hPotion = new Button("Health Potions: ");
+        aPotion = new Button("Attack Potions: ");
         hPotion.setText(hPotion.getText().concat(String.valueOf(getNumHPotion())));
         aPotion.setText(aPotion.getText().concat(String.valueOf(getNumAPotion())));
         potionsBox.getChildren().addAll(potions, hPotion, aPotion);
 
         // crystals box
         VBox crystalsBox = new VBox(10);
-        crystals= new Label("Magic Crystals: ");
+        crystals= new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
 
