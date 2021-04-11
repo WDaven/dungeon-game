@@ -160,21 +160,21 @@ public class InitializeConfigScreen {
             buttonWeapon1.setStyle("-fx-background-color: green;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
-            Maze.getPlayer().setPlayerDamage(8);
+            Maze.getPlayer().setPlayer_Damage(8);
         });
         buttonWeapon2.setOnAction(e -> {
             currWeaponList[0] = weapon2;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: green;");
             buttonWeapon3.setStyle("-fx-background-color: white;");
-            Maze.getPlayer().setPlayerDamage(10);
+            Maze.getPlayer().setPlayer_Damage(10);
         });
         buttonWeapon3.setOnAction(e -> {
             currWeaponList[0] = weapon3;
             buttonWeapon1.setStyle("-fx-background-color: white;");
             buttonWeapon2.setStyle("-fx-background-color: white;");
             buttonWeapon3.setStyle("-fx-background-color: green;");
-            Maze.getPlayer().setPlayerDamage(12);
+            Maze.getPlayer().setPlayer_Damage(12);
         });
 
         HBox hBoxFirstWeapon = new HBox();
