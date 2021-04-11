@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -145,6 +146,10 @@ public class Inventory {
         crystals= new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
+
+        crystals.setOnAction(e -> {
+            primaryStage.setScene(GameOver.start(primaryStage));
+        });
 
         back = new Button("Return to Game");
         background = new BorderPane();
