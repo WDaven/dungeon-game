@@ -39,8 +39,8 @@ public class Maze {
         private int roomNum;
         private MonsterParent monster;
         private boolean isVisited;
+        
 
-      
         Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster) {
             this.roomIdentifier = roomIdentifier;
             top = null;
@@ -84,9 +84,7 @@ public class Maze {
         public void setIsVisted(boolean isVisited) {
             this.isVisited = isVisited;
         }
-        public MonsterParent getMonster() {
-            return monster;
-        }
+        public MonsterParent getMonster() { return monster; }
     }
 
     public Maze() {    // constructor

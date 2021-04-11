@@ -1,27 +1,29 @@
 package scenes;
 
+import static scenes.InitializeConfigScreen.*;
+
 public class Player {
-    private int playerHealth;
-    private int playerDamage;
-    public Player(int playerHealth) {
-        this.playerHealth = playerHealth;
-        this.playerDamage = 12;
+    private int player_Health;
+    private int player_Damage;
+    public Player(int player_Health) {
+        this.player_Health=player_Health;
+        this.player_Damage = 12;
 
     }
 
-    public int getPlayerHealth() {
-        return playerHealth;
+    public int getPlayer_Health() {
+        return player_Health;
     }
 
-    public void setPlayerHealth(int playerHealth) {
-        this.playerHealth = playerHealth;
+    public void setPlayer_Health(int player_Health) {
+        this.player_Health = player_Health;
     }
 
-    public int getPlayerDamage() {
-        return playerDamage;
+    public int getPlayer_Damage() {
+        return player_Damage;
     }
 
-    public void setPlayerDamage(int playerDamage) {
-        this.playerDamage = playerDamage;
+    public void setPlayer_Damage(int player_Damage) {
+        this.player_Damage = player_Damage;
     }
 }
