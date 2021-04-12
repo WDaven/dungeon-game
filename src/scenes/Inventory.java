@@ -184,6 +184,10 @@ public class Inventory {
         maze.setCurr(curr);
         back.setOnAction( e -> {
             primaryStage.setScene(InitialGameScreen.start(primaryStage, maze));
+            if (curr.getMonster().getMonsterIsDead()) {
+                InitialGameScreen.hideMonster();
+                InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+            }
         });
         return new Scene(background, 400, 500);
 

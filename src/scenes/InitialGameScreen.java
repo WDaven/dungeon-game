@@ -33,6 +33,10 @@ public class InitialGameScreen {
     private static Label monsterStatus;
     private static Button inventoryButton;
 
+    public static Label getMonsterStatus() {
+        return monsterStatus;
+    }
+
     public static void hideMonster() {
         attackMonster.setVisible(false);
     }
@@ -290,6 +294,10 @@ public class InitialGameScreen {
                 }
                 monsterStatus.setText(String.format("Monster Health: %d",
                         curr.getMonster().getMonsterHealth()));
+                if (curr.getMonster().getMonsterIsDead()) {
+                    InitialGameScreen.hideMonster();
+                    InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+                }
             }
         });
     }
@@ -345,6 +353,10 @@ public class InitialGameScreen {
                 }
                 monsterStatus.setText(String.format("Monster Health: %d",
                         curr.getMonster().getMonsterHealth()));
+                if (curr.getMonster().getMonsterIsDead()) {
+                    InitialGameScreen.hideMonster();
+                    InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+                }
             }
         });
     }
@@ -400,6 +412,10 @@ public class InitialGameScreen {
                 }
                 monsterStatus.setText(String.format("Monster Health: %d",
                         curr.getMonster().getMonsterHealth()));
+                if (curr.getMonster().getMonsterIsDead()) {
+                    InitialGameScreen.hideMonster();
+                    InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+                }
             }
         });
     }
@@ -455,6 +471,10 @@ public class InitialGameScreen {
                 }
                 monsterStatus.setText(String.format("Monster Health: %d",
                         curr.getMonster().getMonsterHealth()));
+                if (curr.getMonster().getMonsterIsDead()) {
+                    InitialGameScreen.hideMonster();
+                    InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+                }
             }
         });
     }
