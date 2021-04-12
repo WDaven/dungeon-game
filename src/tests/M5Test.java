@@ -148,6 +148,54 @@ public class M5Test extends ApplicationTest {
         clickOn("Attack!");
         assertTrue(Maze.getPlayer().getPlayerDamage() == priorDamage);
     }
+    @Test
+    public void startingWeaponInventory() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon2());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        int priorDamage = Maze.getPlayer().getPlayerDamage();
+        Inventory.setNumAPotion(2);
+        clickOn("Inventory");
+        verifyThat("Swords: 1", NodeMatchers.isVisible());
+    }
+    @Test
+    public void startingWeaponInventory2() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon1());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        int priorDamage = Maze.getPlayer().getPlayerDamage();
+        Inventory.setNumAPotion(2);
+        clickOn("Inventory");
+        verifyThat("Daggers: 1", NodeMatchers.isVisible());
+    }
+    @Test
+    public void startingWeaponInventory3() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
+        clickOn("START GAME");
+        clickOn("YOUR NAME HERE");
+        clickOn("SET NAME");
+        clickOn("HARD");
+        clickOn(getWeapon3());
+        clickOn("CONTINUE");
+        clickOn("Exit Right");
+        int priorDamage = Maze.getPlayer().getPlayerDamage();
+        Inventory.setNumAPotion(2);
+        clickOn("Inventory");
+        verifyThat("Great Swords: 1", NodeMatchers.isVisible());
+    }
 
 
 
