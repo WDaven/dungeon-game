@@ -99,7 +99,7 @@ public class Inventory {
         weapons = new Label("Weapons:");
         daggers = new Button("Daggers: ");
         swords = new Button("Swords: ");
-        greatSwords = new Button("Great Swords ");
+        greatSwords = new Button("Great Swords: ");
         daggers.setText(daggers.getText().concat(String.valueOf(getNumDaggers())));
         swords.setText(swords.getText().concat(String.valueOf(getNumSwords())));
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
@@ -133,7 +133,7 @@ public class Inventory {
                     getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
                 }
             }
-            greatSwords.setText("Great Swords ".concat(String.valueOf(getNumGSwords())));
+            greatSwords.setText("Great Swords: ".concat(String.valueOf(getNumGSwords())));
         });
 
         // potions box
