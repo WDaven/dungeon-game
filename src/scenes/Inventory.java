@@ -99,29 +99,41 @@ public class Inventory {
         weapons = new Label("Weapons:");
         daggers = new Button("Daggers: ");
         swords = new Button("Swords: ");
-        greatSwords = new Button("Great Swords ");
+        greatSwords = new Button("Great Swords: ");
         daggers.setText(daggers.getText().concat(String.valueOf(getNumDaggers())));
         swords.setText(swords.getText().concat(String.valueOf(getNumSwords())));
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
         weaponsBox.getChildren().addAll(weapons, daggers, swords, greatSwords);
 
         daggers.setOnAction(e -> {
-            getPlayer().setPlayerDamage(8);
-            if (getPlayer().getCurrAttackNumber() > 0) {
-                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            if (numDaggers > 0) {
+                numDaggers--;
+                getPlayer().setPlayerDamage(8);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
             }
+            daggers.setText("Daggers: ".concat(String.valueOf(getNumDaggers())));
         });
         swords.setOnAction(e -> {
-            getPlayer().setPlayerDamage(10);
-            if (getPlayer().getCurrAttackNumber() > 0) {
-                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            if (numSwords > 0) {
+                numSwords--;
+                getPlayer().setPlayerDamage(10);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
             }
+            swords.setText("Swords: ".concat(String.valueOf(getNumSwords())));
         });
         greatSwords.setOnAction(e -> {
-            getPlayer().setPlayerDamage(12);
-            if (getPlayer().getCurrAttackNumber() > 0) {
-                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+            if (numGSwords > 0) {
+                numGSwords--;
+                getPlayer().setPlayerDamage(12);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
             }
+            greatSwords.setText("Great Swords: ".concat(String.valueOf(getNumGSwords())));
         });
 
         // potions box
@@ -134,11 +146,19 @@ public class Inventory {
         potionsBox.getChildren().addAll(potions, hPotion, aPotion);
 
         hPotion.setOnAction(e -> {
-            getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
+            if (numHPotion > 0) {
+                numHPotion--;
+                getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
+            }
+            hPotion.setText("Health Potions: ".concat(String.valueOf(getNumHPotion())));
         });
         aPotion.setOnAction(e -> {
-            getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
-            getPlayer().setCurrAttackNumber(5);
+            if (numAPotion > 0) {
+                numAPotion--;
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                getPlayer().setCurrAttackNumber(5);
+            }
+            aPotion.setText("Attack Potions: ".concat(String.valueOf(getNumAPotion())));
         });
 
         // crystals box
@@ -148,7 +168,11 @@ public class Inventory {
         crystalsBox.getChildren().addAll(crystals);
 
         crystals.setOnAction(e -> {
-            primaryStage.setScene(GameOver.start(primaryStage));
+            if (numCrystals > 0) {
+                numCrystals--;
+                primaryStage.setScene(GameOver.start(primaryStage));
+            }
+            crystals.setText("Magic Crystals: ".concat(String.valueOf(getNumCrystals())));
         });
 
         back = new Button("Return to Game");
