@@ -28,7 +28,9 @@ public class Maze {
         Maze.randExitRoom = randExitRoom;
     }
 
-    public static void setCurr(Node curr) {Maze.curr = curr;}
+    public static void setCurr(Node curr) {
+        Maze.curr = curr;
+    }
 
     //Node inner class
     public class Node {
@@ -45,7 +47,8 @@ public class Maze {
         private String dropItem;
 
 
-        Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster, String dropItem) {
+        Node(int roomIdentifier, boolean isExit, int roomNum,
+             MonsterParent monster, String dropItem) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;

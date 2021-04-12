@@ -235,8 +235,8 @@ public class InitialGameScreen {
                 }
                 monsterStatus.setText("Monster Health: Dead");
                 // display alert that an item was dropped !!!!!!!!!!!!!!!!!!!!!!!!
-                String alertStr = String.format("The monster dropped a %s." +
-                        " Check your inventory.", curr.getDropItem());
+                String alertStr = String.format("The monster dropped a %s."
+                        + " Check your inventory.", curr.getDropItem());
                 Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                         (alertStr));
                 alertEmpty.show();
