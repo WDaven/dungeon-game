@@ -31,6 +31,8 @@ public class GameOver {
             primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
         getPlayer().setPlayerHealth(100);
+        getPlayer().setPlayerDamage(0);
+        getPlayer().setCurrAttackNumber(0);
         return new Scene(background, 400, 500);
     }
 }
