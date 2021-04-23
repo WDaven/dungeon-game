@@ -297,8 +297,10 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                } else {
+                }else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: purple");
                 }
                 if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
@@ -356,8 +358,10 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                } else {
+                }else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: purple");
                 }
                 if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
@@ -415,8 +419,10 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                } else {
+                }else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: purple");
                 }
                 if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
@@ -474,8 +480,10 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                } else {
+                }else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
+                } else {
+                    attackMonster.setStyle("-fx-background-color: purple");
                 }
                 if (!(curr.getMonster().getMonsterIsDead())) {
                     attackMonster.setVisible(true);
