@@ -1,13 +1,11 @@
 package scenes;
 
-import javafx.geometry.Pos;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,17 +16,17 @@ public class Inventory {
     private static Button back;
     private static Label weapons;
     private static int numDaggers;
-    private static Label daggers;
-    private static Label swords;
-    private static Label greatSwords;
+    private static Button daggers;
+    private static Button swords;
+    private static Button greatSwords;
     private static int numSwords;
     private static int numGSwords;
     private static Label potions;
-    private static Label hPotion;
-    private static Label aPotion;
+    private static Button hPotion;
+    private static Button aPotion;
     private static int numHPotion;
     private static int numAPotion;
-    private static Label crystals;
+    private static Button crystals;
     private static int numCrystals;
 
     // setters
@@ -84,40 +82,86 @@ public class Inventory {
     }
 
     public static Scene start(Stage primaryStage, Maze maze, Node curr) {
-        // adding original weapon
-//        if (Maze.getPlayer().getPlayerDamage() == 8) {
-//            numDaggers++;
-//        } else if (Maze.getPlayer().getPlayerDamage() == 10) {
-//            numSwords++;
-//        } else {
-//            numGSwords++;
-//        }
-
         // weapons vbox
         VBox weaponsBox = new VBox(10);
         weapons = new Label("Weapons:");
-        daggers = new Label("Daggers: ");
-        swords = new Label("Swords: ");
-        greatSwords = new Label("Great Swords ");
+        daggers = new Button("Daggers: ");
+        swords = new Button("Swords: ");
+        greatSwords = new Button("Great Swords: ");
         daggers.setText(daggers.getText().concat(String.valueOf(getNumDaggers())));
         swords.setText(swords.getText().concat(String.valueOf(getNumSwords())));
         greatSwords.setText(greatSwords.getText().concat(String.valueOf(getNumGSwords())));
         weaponsBox.getChildren().addAll(weapons, daggers, swords, greatSwords);
 
+        daggers.setOnAction(e -> {
+            if (numDaggers > 0) {
+                numDaggers--;
+                getPlayer().setPlayerDamage(8);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
+            }
+            daggers.setText("Daggers: ".concat(String.valueOf(getNumDaggers())));
+        });
+        swords.setOnAction(e -> {
+            if (numSwords > 0) {
+                numSwords--;
+                getPlayer().setPlayerDamage(10);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
+            }
+            swords.setText("Swords: ".concat(String.valueOf(getNumSwords())));
+        });
+        greatSwords.setOnAction(e -> {
+            if (numGSwords > 0) {
+                numGSwords--;
+                getPlayer().setPlayerDamage(12);
+                if (getPlayer().getCurrAttackNumber() > 0) {
+                    getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                }
+            }
+            greatSwords.setText("Great Swords: ".concat(String.valueOf(getNumGSwords())));
+        });
+
         // potions box
         VBox potionsBox = new VBox(10);
         potions = new Label("Potions: ");
-        hPotion = new Label("Health Potions: ");
-        aPotion = new Label("Attack Potions: ");
+        hPotion = new Button("Health Potions: ");
+        aPotion = new Button("Attack Potions: ");
         hPotion.setText(hPotion.getText().concat(String.valueOf(getNumHPotion())));
         aPotion.setText(aPotion.getText().concat(String.valueOf(getNumAPotion())));
         potionsBox.getChildren().addAll(potions, hPotion, aPotion);
 
+        hPotion.setOnAction(e -> {
+            if (numHPotion > 0) {
+                numHPotion--;
+                getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
+            }
+            hPotion.setText("Health Potions: ".concat(String.valueOf(getNumHPotion())));
+        });
+        aPotion.setOnAction(e -> {
+            if (numAPotion > 0) {
+                numAPotion--;
+                getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
+                getPlayer().setCurrAttackNumber(5);
+            }
+            aPotion.setText("Attack Potions: ".concat(String.valueOf(getNumAPotion())));
+        });
+
         // crystals box
         VBox crystalsBox = new VBox(10);
-        crystals= new Label("Magic Crystals: ");
+        crystals = new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
+
+        crystals.setOnAction(e -> {
+            if (numCrystals > 0) {
+                numCrystals--;
+                primaryStage.setScene(GameOver.start(primaryStage));
+            }
+            crystals.setText("Magic Crystals: ".concat(String.valueOf(getNumCrystals())));
+        });
 
         back = new Button("Return to Game");
         background = new BorderPane();
@@ -126,9 +170,14 @@ public class Inventory {
         background.setCenter(potionsBox);
         background.setRight(crystalsBox);
         maze.setCurr(curr);
-        back.setOnAction( e -> {
+        back.setOnAction(e -> {
             primaryStage.setScene(InitialGameScreen.start(primaryStage, maze));
+            if (curr.getMonster().getMonsterIsDead()) {
+                InitialGameScreen.hideMonster();
+                InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+            }
         });
         return new Scene(background, 400, 500);
+
     }
 }
