@@ -32,6 +32,7 @@ public class InitialGameScreen {
     private static Label playerStatus;
     private static Label monsterStatus;
     private static Button inventoryButton;
+    private static Button challengeButton;
 
     public static Label getMonsterStatus() {
         return monsterStatus;
@@ -108,6 +109,7 @@ public class InitialGameScreen {
         attackMonster = new Button("Attack!");
 
         inventoryButton = new Button("Inventory");
+        challengeButton = new Button("Start Challenge");
 
         HBox holdR = new HBox();
         holdR.getChildren().add(exitRight);
@@ -130,10 +132,13 @@ public class InitialGameScreen {
         HBox holdB = new HBox();
         holdB.getChildren().add(inventoryButton);
         holdB.getChildren().add(exitBottom);
+        holdB.getChildren().add(challengeButton);
         holdB.setAlignment(Pos.BOTTOM_LEFT);
         inventoryButton.setAlignment(Pos.BOTTOM_LEFT);
         exitBottom.setAlignment(Pos.CENTER);
-        holdB.setSpacing(380);
+        challengeButton.setAlignment(Pos.BASELINE_RIGHT);
+        challengeButton.setVisible(false);
+        holdB.setSpacing(250);
         root.setBottom(holdB);
 
         HBox holdM = new HBox();
@@ -182,6 +187,7 @@ public class InitialGameScreen {
         setExitBottomAction();
         setInventoryAction(primaryStage, maze);
         setAttackMonsterAction(primaryStage);
+        setChallengeButtonAction();
         // final panes and showing scene
         primaryStage.setTitle("DungeonCrawler");
         primaryStage.setScene(new Scene(root, bkgdWidth, bkgdHeight));
@@ -240,6 +246,25 @@ public class InitialGameScreen {
                 Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                         (alertStr));
                 alertEmpty.show();
+                if (curr.getRoomNum() == 4) {
+                    exitTop.setVisible(true);
+                    exitLeft.setVisible(true);
+                    exitBottom.setVisible(true);
+                    curr.setIsChallenge(false);
+                    challengeButton.setVisible(false);
+                    getPlayer().setPlayerHealth(100);
+                    playerStatus.setText(String.format("Player Health: %d",
+                            getPlayer().getPlayerHealth()));
+                } else if (curr.getRoomNum() == 7) {
+                    exitTop.setVisible(true);
+                    exitRight.setVisible(true);
+                    exitBottom.setVisible(true);
+                    curr.setIsChallenge(false);
+                    challengeButton.setVisible(false);
+                    getPlayer().setPlayerHealth(100);
+                    playerStatus.setText(String.format("Player Health: %d",
+                            getPlayer().getPlayerHealth()));
+                }
             }
         });
     }
@@ -287,8 +312,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setStyle("-fx-background-color: red");
                 }
-                if (!(curr.getMonster().getMonsterIsDead())) {
+                if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
+                    challengeButton.setVisible(false);
+                } else if (curr.getIsChallenge()){
+                    curr.getMonster().setMonsterIsDead(true);
+                    attackMonster.setVisible(false);
+                    challengeButton.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
@@ -346,8 +376,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setStyle("-fx-background-color: red");
                 }
-                if (!(curr.getMonster().getMonsterIsDead())) {
+                if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
+                    challengeButton.setVisible(false);
+                } else if (curr.getIsChallenge()){
+                    curr.getMonster().setMonsterIsDead(true);
+                    attackMonster.setVisible(false);
+                    challengeButton.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
@@ -405,8 +440,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setStyle("-fx-background-color: red");
                 }
-                if (!(curr.getMonster().getMonsterIsDead())) {
+                if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
+                    challengeButton.setVisible(false);
+                } else if (curr.getIsChallenge()){
+                    curr.getMonster().setMonsterIsDead(true);
+                    attackMonster.setVisible(false);
+                    challengeButton.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
@@ -464,8 +504,13 @@ public class InitialGameScreen {
                 } else {
                     attackMonster.setStyle("-fx-background-color: red");
                 }
-                if (!(curr.getMonster().getMonsterIsDead())) {
+                if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
+                    challengeButton.setVisible(false);
+                } else if (curr.getIsChallenge()){
+                    curr.getMonster().setMonsterIsDead(true);
+                    attackMonster.setVisible(false);
+                    challengeButton.setVisible(true);
                 } else {
                     attackMonster.setVisible(false);
                 }
@@ -484,7 +529,22 @@ public class InitialGameScreen {
             primaryStage.setScene(Inventory.start(primaryStage, maze, curr));
         });
     }
-
+    public static void setChallengeButtonAction() {
+        challengeButton.setOnAction(e -> {
+            curr.getMonster().setMonsterIsDead(false);
+            monsterStatus.setText(String.format("Monster Health: %d",
+                    curr.getMonster().getMonsterHealth()));
+            if (curr.getMonster().getMonsterIsDead()) {
+                InitialGameScreen.hideMonster();
+                InitialGameScreen.getMonsterStatus().setText("Monster Health: Dead");
+            }
+            attackMonster.setVisible(true);
+            exitBottom.setVisible(false);
+            exitTop.setVisible(false);
+            exitLeft.setVisible(false);
+            exitRight.setVisible(false);
+        });
+    }
     public static void main(String[] args) {
         launch(args);
     }
