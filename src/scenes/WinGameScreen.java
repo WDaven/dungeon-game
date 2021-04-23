@@ -15,7 +15,7 @@ public class WinGameScreen {
     private static Button restart;
     public static Scene start(Stage primaryStage) {
         background = new BorderPane();
-        gameOver = new Label("You Won!. Play again?");
+        gameOver = new Label("You Won! Play again?");
         gameOver.setAlignment(Pos.TOP_CENTER);
         restart = new Button("Start Over.");
         restart.setAlignment(Pos.CENTER);
