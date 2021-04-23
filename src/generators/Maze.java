@@ -28,9 +28,7 @@ public class Maze {
         Maze.randExitRoom = randExitRoom;
     }
 
-    public static void setCurr(Node curr) {
-        Maze.curr = curr;
-    }
+    public static void setCurr(Node curr) {Maze.curr = curr;}
 
     //Node inner class
     public class Node {
@@ -45,11 +43,9 @@ public class Maze {
         private MonsterParent monster;
         private boolean isVisited;
         private String dropItem;
-        private boolean isChallenge;
 
 
-        Node(int roomIdentifier, boolean isExit, int roomNum,
-             MonsterParent monster, String dropItem, boolean isChallenge) {
+        Node(int roomIdentifier, boolean isExit, int roomNum, MonsterParent monster, String dropItem) {
             this.roomIdentifier = roomIdentifier;
             top = null;
             bottom = null;
@@ -61,7 +57,6 @@ public class Maze {
             this.monster = monster;
             isVisited = false;
             this.dropItem = dropItem;
-            this.isChallenge = isChallenge;
 
         }
 
@@ -101,36 +96,30 @@ public class Maze {
         public String getDropItem() {
             return dropItem;
         }
-        public boolean getIsChallenge() {
-            return isChallenge;
-        }
-        public void setIsChallenge(boolean isChallenge) {
-            this.isChallenge = isChallenge;
-        }
     }
 
     public Maze() {    // constructor
-        Node startNode = new Node(1, false, 0, new MonsterBlue(true), "dagger", false);
+        Node startNode = new Node(1, false, 0, new MonsterBlue(true), "dagger");
         startNode.setIsVisted(true);
-        Node nodeOne = new Node(4, false, 1, new MonsterBlue(), "health potion", false);
-        Node nodeTwo = new Node(3, false, 2, new MonsterGreen(), "great sword", false);
-        Node nodeThree = new Node(5, false, 3, new MonsterRed(), "sword", false);
-        Node nodeFour = new Node(2, false, 4, new MonsterBlue(), "crystal", true);
-        Node nodeFive = new Node(8, false, 5, new MonsterRed(), "health potion", false);
-        Node nodeSix = new Node(6, false, 6, new MonsterGreen(), "attack potion", false);
-        Node nodeSeven = new Node(4, false, 7, new MonsterGreen(), "crystal", true);
-        Node nodeEight = new Node(5, false, 8, new MonsterGreen(), "sword", false);
-        Node nodeNine = new Node(6, false, 9, new MonsterBlue(), "health potion", false);
-        Node nodeTen = new Node(5, false, 10, new MonsterRed(), "dagger", false);
-        Node nodeEleven = new Node(5, false, 11, new MonsterBlue(), "attack potion", false);
-        Node nodeTwelve = new Node(7, false, 12, new MonsterGreen(), "health potion", false);
-        Node nodeThirteen = new Node(6, false, 13, new MonsterBlue(), "dagger", false);
-        Node nodeFourteen = new Node(1, false, 14, new MonsterRed(), "attack potion", false);
-        Node nodeFifteen = new Node(7, false, 15, new MonsterGreen(), "attack potion", false);
-        Node nodeSixteen = new Node(9, false, 16, new MonsterBlue(), "crystal", false);
-        Node nodeSeventeen = new Node(8, false, 17, new MonsterGreen(), "dagger", false);
-        Node nodeEighteen = new Node(1, false, 18, new MonsterGreen(), "sword", false);
-        Node nodeExit = new Node(12, true, -1, new MonsterBlue(), "health potion", false);
+        Node nodeOne = new Node(4, false, 1, new MonsterBlue(), "health potion");
+        Node nodeTwo = new Node(3, false, 2, new MonsterGreen(), "great sword");
+        Node nodeThree = new Node(5, false, 3, new MonsterRed(), "sword");
+        Node nodeFour = new Node(2, false, 4, new MonsterBlue(), "crystal");
+        Node nodeFive = new Node(8, false, 5, new MonsterRed(), "health potion");
+        Node nodeSix = new Node(6, false, 6, new MonsterGreen(), "attack potion");
+        Node nodeSeven = new Node(4, false, 7, new MonsterGreen(), "crystal");
+        Node nodeEight = new Node(5, false, 8, new MonsterGreen(), "sword");
+        Node nodeNine = new Node(6, false, 9, new MonsterBlue(), "health potion");
+        Node nodeTen = new Node(5, false, 10, new MonsterRed(), "dagger");
+        Node nodeEleven = new Node(5, false, 11, new MonsterBlue(), "attack potion");
+        Node nodeTwelve = new Node(7, false, 12, new MonsterGreen(), "health potion");
+        Node nodeThirteen = new Node(6, false, 13, new MonsterBlue(), "dagger");
+        Node nodeFourteen = new Node(1, false, 14, new MonsterRed(), "attack potion");
+        Node nodeFifteen = new Node(7, false, 15, new MonsterGreen(), "attack potion");
+        Node nodeSixteen = new Node(9, false, 16, new MonsterBlue(), "crystal");
+        Node nodeSeventeen = new Node(8, false, 17, new MonsterGreen(), "dagger");
+        Node nodeEighteen = new Node(1, false, 18, new MonsterGreen(), "sword");
+        Node nodeExit = new Node(12, true, -1, new MonsterBlue(), "health potion");
 
         startNode.top = nodeOne;
         startNode.right = nodeTwo;
