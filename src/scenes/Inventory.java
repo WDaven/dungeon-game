@@ -1,11 +1,14 @@
 package scenes;
 
+import javafx.geometry.Pos;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -82,6 +85,15 @@ public class Inventory {
     }
 
     public static Scene start(Stage primaryStage, Maze maze, Node curr) {
+        // adding original weapon
+//        if (Maze.getPlayer().getPlayerDamage() == 8) {
+//            numDaggers++;
+//        } else if (Maze.getPlayer().getPlayerDamage() == 10) {
+//            numSwords++;
+//        } else {
+//            numGSwords++;
+//        }
+
         // weapons vbox
         VBox weaponsBox = new VBox(10);
         weapons = new Label("Weapons:");
@@ -151,7 +163,7 @@ public class Inventory {
 
         // crystals box
         VBox crystalsBox = new VBox(10);
-        crystals = new Button("Magic Crystals: ");
+        crystals= new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
 
@@ -170,7 +182,7 @@ public class Inventory {
         background.setCenter(potionsBox);
         background.setRight(crystalsBox);
         maze.setCurr(curr);
-        back.setOnAction(e -> {
+        back.setOnAction( e -> {
             primaryStage.setScene(InitialGameScreen.start(primaryStage, maze));
             if (curr.getMonster().getMonsterIsDead()) {
                 InitialGameScreen.hideMonster();

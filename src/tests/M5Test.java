@@ -7,8 +7,10 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
+import scenes.Player;
 
 import static org.junit.Assert.assertTrue;
+import static scenes.InitialGameScreen.getCurr;
 import static scenes.InitializeConfigScreen.*;
 import static org.testfx.api.FxAssert.verifyThat;
 
