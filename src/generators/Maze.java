@@ -9,7 +9,7 @@ public class Maze {
     private static Node curr;
     private static int randExitRoom;
     private static boolean randExitRoomSet;
-    private static Player player = new Player(100);
+    private static Player player = new Player(500);
 
     //getters
     public static Node getCurr() {
@@ -119,7 +119,7 @@ public class Maze {
         Node nodeSixteen = new Node(9, false, 16, new MonsterBlue(), "crystal");
         Node nodeSeventeen = new Node(8, false, 17, new MonsterGreen(), "dagger");
         Node nodeEighteen = new Node(1, false, 18, new MonsterGreen(), "sword");
-        Node nodeExit = new Node(12, true, -1, new MonsterBlue(), "health potion");
+        Node nodeExit = new Node(12, true, -1, new MonsterBoss(), "health potion");
 
         startNode.top = nodeOne;
         startNode.right = nodeTwo;
