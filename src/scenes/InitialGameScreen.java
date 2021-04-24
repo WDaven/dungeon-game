@@ -45,9 +45,6 @@ public class InitialGameScreen {
         return monsterStatus;
     }
 
-    public static Label getMonsterStatus() {
-        return monsterStatus;
-    }
 
     public static void hideMonster() {
         attackMonster.setVisible(false);
