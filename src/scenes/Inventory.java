@@ -3,6 +3,7 @@ package scenes;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -151,7 +152,8 @@ public class Inventory {
 
         // crystals box
         VBox crystalsBox = new VBox(10);
-        crystals = new Button("Magic Crystals: ");
+
+        crystals= new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
 
