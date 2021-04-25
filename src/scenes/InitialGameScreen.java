@@ -289,7 +289,7 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 }
