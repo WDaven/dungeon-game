@@ -134,6 +134,7 @@ public class InitialGameScreen {
 
         HBox holdT = new HBox();
         holdT.getChildren().add(exitTop);
+        holdT.getChildren().add(winGame);
         holdT.setAlignment(Pos.CENTER);
         holdT.setSpacing(10);
         root.setTop(holdT);
@@ -147,13 +148,13 @@ public class InitialGameScreen {
         exitBottom.setAlignment(Pos.CENTER);
         challengeButton.setAlignment(Pos.BASELINE_RIGHT);
         challengeButton.setVisible(false);
-        holdB.setSpacing(350);
+        holdB.setSpacing(300);
         root.setBottom(holdB);
 
         holdM = new HBox();
         monsterOne = new Button("Attack!");
         monsterTwo = new Button("Attack!");
-        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo, winGame);
+        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo);
         monsterTwo.setVisible(false);
         monsterOne.setVisible(false);
         holdM.setAlignment(Pos.CENTER);
