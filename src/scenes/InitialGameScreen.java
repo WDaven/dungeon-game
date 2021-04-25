@@ -148,7 +148,7 @@ public class InitialGameScreen {
         exitBottom.setAlignment(Pos.CENTER);
         challengeButton.setAlignment(Pos.BASELINE_RIGHT);
         challengeButton.setVisible(false);
-        holdB.setSpacing(300);
+        holdB.setSpacing(350);
         root.setBottom(holdB);
 
         holdM = new HBox();
@@ -279,7 +279,8 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    inventoryButton.setVisible(true);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 } else if (curr.getRoomNum() == 7) {
@@ -590,6 +591,7 @@ public class InitialGameScreen {
     }
     public static void setChallengeButtonAction(Stage primaryStage) {
         challengeButton.setOnAction(e -> {
+            inventoryButton.setVisible(false);
             challengeOne = new MonsterGreen();
             challengeOne.setMonsterIsDead(false);
             challengeTwo = new MonsterGreen();
