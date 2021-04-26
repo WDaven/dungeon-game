@@ -4,6 +4,7 @@ public class MonsterParent {
     private int monsterHealth;
     private int monsterDamage;
     private boolean monsterIsDead;
+    private static int deadMonsterCount = 0;
     public MonsterParent() {
         this.monsterHealth = 10;
         this.monsterDamage = 1;
@@ -41,6 +42,11 @@ public class MonsterParent {
     }
 
     public void setMonsterIsDead(boolean monsterIsDead) {
+
         this.monsterIsDead = monsterIsDead;
+        ++deadMonsterCount;
     }
+    public static int getDeadMonsterCount() {return deadMonsterCount;}
+
+    public static void setDeadMonsterCount(int i) {deadMonsterCount = i;}
 }

@@ -134,6 +134,7 @@ public class InitialGameScreen {
 
         HBox holdT = new HBox();
         holdT.getChildren().add(exitTop);
+        holdT.getChildren().add(winGame);
         holdT.setAlignment(Pos.CENTER);
         holdT.setSpacing(10);
         root.setTop(holdT);
@@ -147,13 +148,13 @@ public class InitialGameScreen {
         exitBottom.setAlignment(Pos.CENTER);
         challengeButton.setAlignment(Pos.BASELINE_RIGHT);
         challengeButton.setVisible(false);
-        holdB.setSpacing(350);
+        holdB.setSpacing(300);
         root.setBottom(holdB);
 
         holdM = new HBox();
         monsterOne = new Button("Attack!");
         monsterTwo = new Button("Attack!");
-        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo, winGame);
+        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo);
         monsterTwo.setVisible(false);
         monsterOne.setVisible(false);
         holdM.setAlignment(Pos.CENTER);
@@ -278,7 +279,8 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    inventoryButton.setVisible(true);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 } else if (curr.getRoomNum() == 7) {
@@ -287,7 +289,7 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 }
@@ -589,6 +591,7 @@ public class InitialGameScreen {
     }
     public static void setChallengeButtonAction(Stage primaryStage) {
         challengeButton.setOnAction(e -> {
+            inventoryButton.setVisible(false);
             challengeOne = new MonsterGreen();
             challengeOne.setMonsterIsDead(false);
             challengeTwo = new MonsterGreen();
