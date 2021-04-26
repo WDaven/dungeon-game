@@ -148,7 +148,7 @@ public class InitialGameScreen {
         exitBottom.setAlignment(Pos.CENTER);
         challengeButton.setAlignment(Pos.BASELINE_RIGHT);
         challengeButton.setVisible(false);
-        holdB.setSpacing(350);
+        holdB.setSpacing(300);
         root.setBottom(holdB);
 
         holdM = new HBox();
