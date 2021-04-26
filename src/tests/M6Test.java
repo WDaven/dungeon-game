@@ -85,7 +85,7 @@ public class M6Test extends ApplicationTest {
         assertEquals(446, playerHp);
     }
     @Test
-    public void challengeButtonAttackFour3() {  // player health should be 500 after completing challenge
+    public void challengeButtonAttackFour3() {  // player health should be 500 after
         clickOn("START GAME");
         clickOn("YOUR NAME HERE");
         clickOn("SET NAME");
