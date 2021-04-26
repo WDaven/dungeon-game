@@ -58,7 +58,7 @@ public class GameOver {
             MonsterParent.setDeadMonsterCount(0);
             primaryStage.setScene(InitializeConfigScreen.initConfigScreen(primaryStage));
         });
-        getPlayer().setPlayerHealth(100);
+        getPlayer().setPlayerHealth(500);
         getPlayer().setPlayerDamage(0);
         getPlayer().setCurrAttackNumber(0);
 
