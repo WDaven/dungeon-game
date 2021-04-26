@@ -45,9 +45,6 @@ public class InitialGameScreen {
         return monsterStatus;
     }
 
-    public static Label getMonsterStatus() {
-        return monsterStatus;
-    }
 
     public static void hideMonster() {
         attackMonster.setVisible(false);
@@ -137,6 +134,7 @@ public class InitialGameScreen {
 
         HBox holdT = new HBox();
         holdT.getChildren().add(exitTop);
+        holdT.getChildren().add(winGame);
         holdT.setAlignment(Pos.CENTER);
         holdT.setSpacing(10);
         root.setTop(holdT);
@@ -154,9 +152,9 @@ public class InitialGameScreen {
         root.setBottom(holdB);
 
         holdM = new HBox();
-        monsterOne = new Button("Attack!");
-        monsterTwo = new Button("Attack!");
-        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo, winGame);
+        monsterOne = new Button("Attack1!");
+        monsterTwo = new Button("Attack2!");
+        holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo);
         monsterTwo.setVisible(false);
         monsterOne.setVisible(false);
         holdM.setAlignment(Pos.CENTER);
@@ -281,7 +279,8 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    inventoryButton.setVisible(true);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 } else if (curr.getRoomNum() == 7) {
@@ -290,7 +289,7 @@ public class InitialGameScreen {
                     exitBottom.setVisible(true);
                     curr.setIsChallenge(false);
                     challengeButton.setVisible(false);
-                    getPlayer().setPlayerHealth(100);
+                    getPlayer().setPlayerHealth(500);
                     playerStatus.setText(String.format("Player Health: %d",
                             getPlayer().getPlayerHealth()));
                 }
@@ -592,6 +591,7 @@ public class InitialGameScreen {
     }
     public static void setChallengeButtonAction(Stage primaryStage) {
         challengeButton.setOnAction(e -> {
+            inventoryButton.setVisible(false);
             challengeOne = new MonsterGreen();
             challengeOne.setMonsterIsDead(false);
             challengeTwo = new MonsterGreen();
@@ -631,6 +631,7 @@ public class InitialGameScreen {
             }
             challengeOne.setMonsterHealth(monsterHealth - playerDamage);
             if (challengeOne.getMonsterHealth() <= 0) {
+                System.out.println(challengeOne.getMonsterHealth());
                 System.out.println("enter if");
                 challengeOne.setMonsterIsDead(true);
                 monsterOne.setVisible(false);

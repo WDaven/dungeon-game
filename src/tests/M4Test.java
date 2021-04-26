@@ -92,7 +92,7 @@ public class M4Test extends ApplicationTest {
             clickOn("Attack!");
             monsterHp = getCurr().getMonster().getMonsterHealth();
         }
-        verifyThat("Attack!", NodeMatchers.isInvisible());
+        verifyThat("Attack1!", NodeMatchers.isInvisible());
     }
     @Test
     public void playerDamageOne() {

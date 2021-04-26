@@ -3,7 +3,6 @@ package scenes;
 import generators.Maze;
 import generators.Maze.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -29,6 +28,7 @@ public class Inventory {
     private static int numAPotion;
     private static Button crystals;
     private static int numCrystals;
+    private static int numItemsUsed;
 
     // setters
 
@@ -81,6 +81,9 @@ public class Inventory {
     public static int getNumCrystals() {
         return numCrystals;
     }
+    public static int getNumItemsUsed() {
+        return numItemsUsed;
+    }
 
     public static Scene start(Stage primaryStage, Maze maze, Node curr) {
         // weapons vbox
@@ -97,6 +100,7 @@ public class Inventory {
         daggers.setOnAction(e -> {
             if (numDaggers > 0) {
                 numDaggers--;
+                numItemsUsed++;
                 getPlayer().setPlayerDamage(8);
                 if (getPlayer().getCurrAttackNumber() > 0) {
                     getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
@@ -107,6 +111,7 @@ public class Inventory {
         swords.setOnAction(e -> {
             if (numSwords > 0) {
                 numSwords--;
+                numItemsUsed++;
                 getPlayer().setPlayerDamage(10);
                 if (getPlayer().getCurrAttackNumber() > 0) {
                     getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
@@ -117,6 +122,7 @@ public class Inventory {
         greatSwords.setOnAction(e -> {
             if (numGSwords > 0) {
                 numGSwords--;
+                numItemsUsed++;
                 getPlayer().setPlayerDamage(12);
                 if (getPlayer().getCurrAttackNumber() > 0) {
                     getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
@@ -137,6 +143,7 @@ public class Inventory {
         hPotion.setOnAction(e -> {
             if (numHPotion > 0) {
                 numHPotion--;
+                numItemsUsed++;
                 getPlayer().setPlayerHealth(getPlayer().getPlayerHealth() + 20);
             }
             hPotion.setText("Health Potions: ".concat(String.valueOf(getNumHPotion())));
@@ -144,6 +151,7 @@ public class Inventory {
         aPotion.setOnAction(e -> {
             if (numAPotion > 0) {
                 numAPotion--;
+                numItemsUsed++;
                 getPlayer().setPlayerDamage(getPlayer().getPlayerDamage() + 10);
                 getPlayer().setCurrAttackNumber(5);
             }
@@ -152,14 +160,14 @@ public class Inventory {
 
         // crystals box
         VBox crystalsBox = new VBox(10);
-
-        crystals= new Button("Magic Crystals: ");
+        crystals = new Button("Magic Crystals: ");
         crystals.setText(crystals.getText().concat(String.valueOf(getNumCrystals())));
         crystalsBox.getChildren().addAll(crystals);
 
         crystals.setOnAction(e -> {
             if (numCrystals > 0) {
                 numCrystals--;
+                numItemsUsed++;
                 primaryStage.setScene(GameOver.start(primaryStage));
             }
             crystals.setText("Magic Crystals: ".concat(String.valueOf(getNumCrystals())));
