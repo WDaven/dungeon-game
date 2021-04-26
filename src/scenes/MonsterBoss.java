@@ -1,6 +1,6 @@
 package scenes;
 
-public class MonsterBoss extends MonsterParent{
+public class MonsterBoss extends MonsterParent {
     public MonsterBoss(int monsterHealth, int monsterDamage) {
         super(monsterHealth, monsterDamage);
     }

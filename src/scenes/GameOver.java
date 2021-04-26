@@ -19,17 +19,21 @@ public class GameOver {
     private static Button closeWindow;
     public static Scene start(Stage primaryStage) {
         background = new BorderPane();
-        itemsUsed = String.format("Number of Inventory Items Used: %d\n", Inventory.getNumItemsUsed());
+        itemsUsed = String.format("Number of Inventory Items Used: %d\n",
+                Inventory.getNumItemsUsed());
         int i = 0;
         String currWeapon = InitializeConfigScreen.getCurrWeaponList()[i];
         while (InitializeConfigScreen.getCurrWeaponList()[i] != null) {
             currWeapon = InitializeConfigScreen.getCurrWeaponList()[i];
             i++;
         }
-        finalWeapon = "Final Weapon: " + currWeapon +"\n";
-        monstersKilled = String.format("Number of Monsters Killed: %d\n", MonsterParent.getDeadMonsterCount());
-        gameOver = new Label("GAME OVER.\nSorry, " + InitializeConfigScreen.getUserInputName()
-                + ". You've Lost. Please try again... \n" + itemsUsed + finalWeapon + monstersKilled);
+        finalWeapon = "Final Weapon: " + currWeapon + "\n";
+        monstersKilled = String.format("Number of Monsters Killed: %d\n",
+                MonsterParent.getDeadMonsterCount());
+        gameOver = new Label("GAME OVER.\nSorry, "
+                + InitializeConfigScreen.getUserInputName()
+                + ". You've Lost. Please try again... \n"
+                + itemsUsed + finalWeapon + monstersKilled);
 
 
         gameOver.setAlignment(Pos.TOP_CENTER);
@@ -41,9 +45,9 @@ public class GameOver {
         background.setTop(gameOver);
         background.setCenter(restart);
         background.setBottom(closeWindow);
-        closeWindow.setOnAction(e-> {
+        closeWindow.setOnAction(e -> {
             primaryStage.close();
-                });
+        });
         restart.setOnAction(e -> {
             Inventory.setNumDaggers(0);
             Inventory.setNumSwords(0);

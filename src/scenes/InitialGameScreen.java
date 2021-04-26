@@ -63,7 +63,6 @@ public class InitialGameScreen {
     }
 
     public static Scene start(Stage primaryStage, Maze mazeM) {
-
         maze = mazeM;
         //setting start room page
         curr = Maze.getCurr();
@@ -190,7 +189,7 @@ public class InitialGameScreen {
             attackMonster.setStyle("-fx-background-color: blue");
         } else if (curr.getMonster() instanceof MonsterGreen) {
             attackMonster.setStyle("-fx-background-color: green");
-        }else if (curr.getMonster() instanceof MonsterRed) {
+        } else if (curr.getMonster() instanceof MonsterRed) {
             attackMonster.setStyle("-fx-background-color: red");
         } else {
             attackMonster.setStyle("-fx-background-color: purple");
@@ -337,7 +336,7 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                }else if (curr.getMonster() instanceof MonsterRed) {
+                } else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
                 } else {
                     attackMonster.setStyle("-fx-background-color: purple");
@@ -345,11 +344,12 @@ public class InitialGameScreen {
                 if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
                     challengeButton.setVisible(false);
-                } else if (curr.getIsChallenge()){
+                } else if (curr.getIsChallenge()) {
                     curr.getMonster().setMonsterIsDead(true);
                     attackMonster.setVisible(false);
                     challengeButton.setVisible(true);
-                    String alertStr = "Click the challenge button if you wish to fight a few monsters "
+                    String alertStr = "Click the challenge button "
+                            + "if you wish to fight a few monsters "
                             + "to get full health back or you can proceed without completing it.";
                     Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                             (alertStr));
@@ -409,7 +409,7 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                }else if (curr.getMonster() instanceof MonsterRed) {
+                } else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
                 } else {
                     attackMonster.setStyle("-fx-background-color: purple");
@@ -417,11 +417,12 @@ public class InitialGameScreen {
                 if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
                     challengeButton.setVisible(false);
-                } else if (curr.getIsChallenge()){
+                } else if (curr.getIsChallenge()) {
                     curr.getMonster().setMonsterIsDead(true);
                     attackMonster.setVisible(false);
                     challengeButton.setVisible(true);
-                    String alertStr = "Click the challenge button if you wish to fight a few monsters "
+                    String alertStr = "Click the challenge button if you "
+                            + "wish to fight a few monsters "
                             + "to get full health back or you can proceed without completing it.";
                     Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                             (alertStr));
@@ -481,7 +482,7 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                }else if (curr.getMonster() instanceof MonsterRed) {
+                } else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
                 } else {
                     attackMonster.setStyle("-fx-background-color: purple");
@@ -489,11 +490,12 @@ public class InitialGameScreen {
                 if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
                     challengeButton.setVisible(false);
-                } else if (curr.getIsChallenge()){
+                } else if (curr.getIsChallenge()) {
                     curr.getMonster().setMonsterIsDead(true);
                     attackMonster.setVisible(false);
                     challengeButton.setVisible(true);
-                    String alertStr = "Click the challenge button if you wish to fight a few monsters "
+                    String alertStr = "Click the challenge button if "
+                            + "you wish to fight a few monsters "
                             + "to get full health back or you can proceed without completing it.";
                     Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                             (alertStr));
@@ -553,7 +555,7 @@ public class InitialGameScreen {
                     attackMonster.setStyle("-fx-background-color: blue");
                 } else if (curr.getMonster() instanceof MonsterGreen) {
                     attackMonster.setStyle("-fx-background-color: green");
-                }else if (curr.getMonster() instanceof MonsterRed) {
+                } else if (curr.getMonster() instanceof MonsterRed) {
                     attackMonster.setStyle("-fx-background-color: red");
                 } else {
                     attackMonster.setStyle("-fx-background-color: purple");
@@ -561,11 +563,12 @@ public class InitialGameScreen {
                 if (!(curr.getMonster().getMonsterIsDead()) && !(curr.getIsChallenge())) {
                     attackMonster.setVisible(true);
                     challengeButton.setVisible(false);
-                } else if (curr.getIsChallenge()){
+                } else if (curr.getIsChallenge()) {
                     curr.getMonster().setMonsterIsDead(true);
                     attackMonster.setVisible(false);
                     challengeButton.setVisible(true);
-                    String alertStr = "Click the challenge button if you wish to fight a few monsters "
+                    String alertStr = "Click the challenge button if you wish to "
+                            + "fight a few monsters "
                             + "to get full health back or you can proceed without completing it.";
                     Alert alertEmpty = new Alert(Alert.AlertType.WARNING,
                             (alertStr));

@@ -46,7 +46,11 @@ public class MonsterParent {
         this.monsterIsDead = monsterIsDead;
         ++deadMonsterCount;
     }
-    public static int getDeadMonsterCount() {return deadMonsterCount;}
+    public static int getDeadMonsterCount() {
+        return deadMonsterCount;
+    }
 
-    public static void setDeadMonsterCount(int i) {deadMonsterCount = i;}
+    public static void setDeadMonsterCount(int i) {
+        deadMonsterCount = i;
+    }
 }
