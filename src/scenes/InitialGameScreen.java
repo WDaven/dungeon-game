@@ -151,8 +151,8 @@ public class InitialGameScreen {
         root.setBottom(holdB);
 
         holdM = new HBox();
-        monsterOne = new Button("Attack!");
-        monsterTwo = new Button("Attack!");
+        monsterOne = new Button("Attack1!");
+        monsterTwo = new Button("Attack2!");
         holdM.getChildren().addAll(monsterOne, attackMonster, monsterTwo);
         monsterTwo.setVisible(false);
         monsterOne.setVisible(false);

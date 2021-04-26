@@ -160,11 +160,13 @@ public class M6Test extends ApplicationTest {
         clickOn("Attack2!");
         clickOn("Attack!");
         clickOn("Attack!");
-        clickOn("Attack!");
+        clickOn("OK");
         verifyThat("Attack!", NodeMatchers.isInvisible());
     }
     @Test
     public void mosterBossroom14() {
+        Maze.setRandExitRoomSet(true);
+        Maze.setRandExitRoom(4);
         clickOn("START GAME");
         clickOn("YOUR NAME HERE");
         clickOn("SET NAME");
@@ -176,64 +178,46 @@ public class M6Test extends ApplicationTest {
         clickOn("Exit Bottom");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Left");
+        clickOn("OK");
         clickOn("Exit Bottom");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Bottom");
         clickOn("Attack!");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Right");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Top");
         clickOn("Attack!");
         clickOn("Attack!");
-        Maze.setRandExitRoom(4);
+        clickOn("OK");
         clickOn("Exit Top");
         clickOn("Attack!");
         clickOn("Attack!");
         clickOn("Attack!");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("Attack!");
+        clickOn("OK");
         clickOn("End Game!");
         assertTrue(Maze.getCurr().getMonster().getMonsterIsDead());
     }
-    @Test
-    public void mosterBossroom14IsExit() {
-        clickOn("START GAME");
-        clickOn("YOUR NAME HERE");
-        clickOn("SET NAME");
-        clickOn("HARD");
-        clickOn(getWeapon1());
-        clickOn("CONTINUE");
-        clickOn("Exit Bottom");
-        clickOn("OK");
-        clickOn("Exit Bottom");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Exit Left");
-        clickOn("Exit Bottom");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Exit Bottom");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Exit Right");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        clickOn("Exit Top");
-        clickOn("Attack!");
-        clickOn("Attack!");
-        Maze.setRandExitRoom(4);
-        Maze.getPlayer().setPlayerHealth(2);
-        clickOn("Exit Top");
-        clickOn("Attack!");
-        assertTrue(!Maze.getCurr().getIsExit());
-    }
+
     @Test
     public void challengeRoom7() {
         clickOn("START GAME");
@@ -245,9 +229,11 @@ public class M6Test extends ApplicationTest {
         clickOn("Exit Left");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Left");
         clickOn("Attack!");
         clickOn("Attack!");
+        clickOn("OK");
         clickOn("Exit Bottom");
         clickOn("Start Challenge");
         assertTrue(Maze.getCurr().getIsVisted());
